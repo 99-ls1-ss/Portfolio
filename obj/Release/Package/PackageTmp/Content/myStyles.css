@@ -1,0 +1,119 @@
+﻿.modal-header {
+    background-color: #2c3e50;
+}
+
+.modal-header h4, .modal-header h5, .close, .close:hover, .close:focus {
+    color:#fff;
+}
+
+.modal-dialog.numbersGame {
+    width:auto;
+    max-width: 870px;
+}
+
+.modal-dialog.numberChanger, .modal-dialog.palindromeChecker {
+    width:auto;
+    max-width: 990px;
+}
+
+.modal-dialog.findFact {
+    width:auto;
+    max-width: 1100px;
+}
+
+.numbersGame input, .numberChanger input {
+    max-width:4em;
+    margin-top:1%;
+    margin-bottom:10%; 
+}
+
+.findFact input {
+    max-width:5em;
+    margin-top:10%;
+    margin-bottom:10%; 
+}
+
+#palindromeChecker input {
+    max-width:6.5em;
+    margin-top:10%;
+    margin-bottom:10%; 
+}
+
+.numbersGame .col-xs-2 {
+    width:18.8666666666666664%;
+}
+
+.numbersGame label, .numberChanger label {
+    text-align:right;
+    padding:.75% 1% 0;
+    color: #2c3e50;    
+}
+
+.numbersGame span, #displayMagic {
+    color: #2c3e50;
+}
+
+#displayFactorial, #palindromeResults {
+    color: #2c3e50;
+    font-weight:bold;
+}
+
+.numbersGame span.col-xs-7 {
+    color: #2c3e50;
+    padding-right:1%;
+}
+
+.spacer {
+    height:.75em;
+}
+
+.rowSpacer {
+    margin:.25em 0;
+}
+
+#displayMagic span {
+    padding-right:.2em;
+}
+
+.section {
+    padding: 24px 0;
+}
+
+#resume li {
+    line-height:1.75;
+}
+
+#resume li p {
+    line-height:initial;
+}
+
+.borderClass {
+    border:1px solid;
+}
+
+.center-text {
+    text-align:center;
+}
+
+.resume-head {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    margin-right:-1px;
+    margin-left:-1px;
+}
+
+.resume-head h2, .resume-head h5 a {
+    color: #ecf0f1;
+}
+
+.javascriptExamples {
+    background-color:#fff1a6;
+}
+
+.photoshopExamples {
+    background-color: #beffa2;
+}
+
+#portfolio-4 h4 {
+    margin-left: 1em;
+}

@@ -1,0 +1,317 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    @*<link href="~/Content/pygments-manni.css" rel="stylesheet" />
+    <link href="~/Content/docs.css" rel="stylesheet" />*@
+    <link href="~/Content/ui.totop.css" rel="stylesheet" />
+    <link href="~/Content/prettyPhoto.css" rel="stylesheet" />
+    <link href="~/Content/settings.css" rel="stylesheet" />
+    <link href="~/assets/rs-plugin/css/settings.css" rel="stylesheet" />
+    <link href="~/Content/stylesheet.css" rel="stylesheet" />
+    <link href="~/Content/skins.css" rel="stylesheet" />
+    <link href="~/Scripts/SyntaxHighlighter/styles/shCore.css" rel="stylesheet" />
+    <link href="~/Scripts/SyntaxHighlighter/styles/shThemeDefault.css" rel="stylesheet" />
+    <link href="~/Content/myStyles.css" rel="stylesheet" />
+    <!-- Font Awesome  -->
+    <link href="~/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+
+</head>
+<body>
+    <div id="main-wrapper" class="color-skin-3">
+        @*<header id="header-1" class="header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-8 header-info-wrapper">
+                        <ul class="list-inline">
+                            <li><i class="icon-mobile-phone"></i> Mobile: (336) 601-2085</li>
+                            <li><i class="icon-envelope"></i> Mail: <a href="mailto:brandon@navicamls.net">brandon@navicamls.net</a></li>
+                        </ul>
+                        <!-- /.list-inline -->
+                    </div>
+                    <!-- /.header-info-wrapper -->
+                    <div class="col-xs-12 col-sm-4 social-link-wrapper">
+                        <ul class="social-links">
+                            <li><a href="#"><i class="icon-facebook"></i></a></li>
+                            <li><a href="#"><i class="icon-google-plus"></i></a></li>
+                        </ul>
+                        <!-- /.social-links -->
+                    </div>
+                    <!-- /.social-link-wrapper -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container -->
+        </header>*@
+        <!-- /.header-1 -->
+        <header id="header-2" class="header">
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="index.html">Payne<span>Solutions</span></a>
+                    </div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse navbar-ex1-collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown @(ViewBag.Title == "Home Page" ? "active" : "")">
+                                <a href="@Url.Action("Index","Home")">Home</a>
+                            </li>                            
+                            <li class="dropdown @(ViewBag.Title == "Portfolio" ? "active" : "")">
+                                <a href="@Url.Action("Index","Portfolio")">Portfolio</a>
+                            </li>
+                            <li class="dropdown @(ViewBag.Title == "My Blog" ? "active" : "")">
+                                <a href="@Url.Action("Index","Blog")">Blog</a>
+                            </li>
+                            <li class="dropdown @(ViewBag.Title == "About Me" ? "active" : "")">
+                                <a href="@Url.Action("Index","About")">About</a>
+                            </li>
+                            <li class="dropdown @(ViewBag.Title == "Resume" ? "active" : "")">
+                                <a href="@Url.Action("Index","Resume")">Resume</a>
+                            </li>
+                            <li class="dropdown @(ViewBag.Title == "Contact Me" ? "active" : "")">
+                                <a href="@Url.Action("Index","Contact")">Contact</a>
+                            </li>
+                            
+
+                        </ul>
+                        <!-- /.nav -->
+                    </div>
+                    <!-- /.navbar-collapse -->
+                </div>
+                <!-- /.container -->
+            </nav>
+            <!-- /.navbar -->
+        </header>
+
+        @RenderBody()
+
+        <footer id="footer-2" class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 footer-info-wrapper">
+                        @*@{var dt = System.DateTime.Now}*@
+                        <span>Copyright © PayneSolutions @System.DateTime.Now.ToString("yyyy")</span>
+                    </div>
+                    <!-- /.footer-info-wrapper -->
+                    <div class="col-xs-12 col-sm-6 social-link-wrapper">
+                        <ul class="social-links">
+                            <li><a href="#"><i class="icon-facebook"></i></a></li>
+                            <li><a href="#"><i class="icon-google-plus"></i></a></li>
+                         </ul>
+                    </div>
+                    <!-- /.social-link-wrapper -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container -->
+        </footer>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/SyntaxHighlighter/scripts/shCore.js"></script>
+    <script src="~/Scripts/SyntaxHighlighter/scripts/shBrushJScript.js"></script>
+    @RenderSection("scripts", required: false)
+
+    <!-- jQuery REVOLUTION Slider  -->
+    <script src="~/Scripts/jquery.themepunch.tools.min.js"></script>
+    <script src="~/Scripts/jquery.themepunch.revolution.js"></script>
+
+    <script src="~/Scripts/jquery.carouFredSel-6.2.1.js"></script>
+    <script src="~/Scripts/jquery.prettyPhoto.js"></script>
+    <script src="~/Scripts/jflickrfeed.js"></script>
+    <script src="~/Scripts/easing.js"></script>
+    <script src="~/Scripts/jquery.ui.totop.js"></script>
+    <script src="~/Scripts/jquery.isotope.js"></script>
+    <script src="~/Scripts/jquery.fitvids.js"></script>
+    <script src="~/Scripts/jsMain.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+            jQuery('.banner').revolution({
+                delay: 9000,
+                startwidth: 1100,
+                startheight: 450,
+                startWithSlide: 0,
+
+                fullScreenAlignForce: "off",
+                autoHeight: "off",
+                minHeight: "off",
+
+                shuffle: "off",
+
+                onHoverStop: "on",
+
+                thumbWidth: 100,
+                thumbHeight: 50,
+                thumbAmount: 3,
+
+                hideThumbsOnMobile: "off",
+                hideNavDelayOnMobile: 1500,
+                hideBulletsOnMobile: "off",
+                hideArrowsOnMobile: "off",
+                hideThumbsUnderResoluition: 0,
+
+                hideThumbs: 0,
+                hideTimerBar: "off",
+
+                keyboardNavigation: "on",
+
+                navigationType: "bullet",
+                navigationArrows: "solo",
+                navigationStyle: "preview1",
+
+                navigationHAlign: "center",
+                navigationVAlign: "bottom",
+                navigationHOffset: 30,
+                navigationVOffset: 30,
+
+                soloArrowLeftHalign: "left",
+                soloArrowLeftValign: "center",
+                soloArrowLeftHOffset: 20,
+                soloArrowLeftVOffset: 0,
+
+                soloArrowRightHalign: "right",
+                soloArrowRightValign: "center",
+                soloArrowRightHOffset: 20,
+                soloArrowRightVOffset: 0,
+
+
+                touchenabled: "on",
+                swipe_velocity: "0.7",
+                swipe_max_touches: "1",
+                swipe_min_touches: "1",
+                drag_block_vertical: "false",
+
+                parallax: "mouse",
+                parallaxBgFreeze: "on",
+                parallaxLevels: [10, 7, 4, 3, 2, 5, 4, 3, 2, 1],
+                parallaxDisableOnMobile: "off",
+
+                stopAtSlide: -1,
+                stopAfterLoops: -1,
+                hideCaptionAtLimit: 0,
+                hideAllCaptionAtLilmit: 0,
+                hideSliderAtLimit: 0,
+
+                dottedOverlay: "none",
+
+                spinned: "spinner4",
+
+                fullWidth: "off",
+                forceFullWidth: "off",
+                fullScreen: "off",
+                fullScreenOffsetContainer: "#topheader-to-offset",
+                fullScreenOffset: "0px",
+
+                panZoomDisableOnMobile: "off",
+
+                simplifyAll: "off",
+
+                shadow: 0
+            });
+
+            jQuery("a[rel^='prettyPhoto']").prettyPhoto({
+                theme: 'light_square',
+                social_tools: false
+            });
+            // FitVids
+            jQuery(".responsive-video-wrapper").fitVids();
+            // jflickrfeed
+            jQuery('.flickr-photos-list').jflickrfeed({
+                limit: 9,
+                qstrings: {
+                    id: '71865026@N00'
+                },
+                itemTemplate: '<li><a href="{{image_b}}"><img src="{{image_s}}" alt="{{title}}" /></a></li>'
+            });
+            // jQuery UItoTop
+            jQuery().UItoTop({ easingType: 'easeOutQuart' });
+            // Skin Chooser
+            jQuery(".color-skin").click(function () {
+                var cls = this.id;
+                jQuery(".color-skin").removeClass("active");
+                jQuery(this).addClass("active");
+                jQuery("#main-wrapper").removeClass();
+                jQuery("#main-wrapper").addClass(cls);
+            });
+
+        });
+
+        // jQuery CarouFredSel
+        var caroufredsel = function () {
+            jQuery('#caroufredsel-portfolio-container').carouFredSel({
+                responsive: true,
+                scroll: 1,
+                circular: false,
+                infinite: false,
+                items: {
+                    visible: {
+                        min: 1,
+                        max: 6
+                    }
+                },
+                prev: '#portfolio-prev',
+                next: '#portfolio-next',
+                auto: {
+                    play: false
+                }
+            });
+            jQuery('#caroufredsel-blog-posts-container').carouFredSel({
+                responsive: true,
+                scroll: 1,
+                circular: false,
+                infinite: false,
+                items: {
+                    visible: {
+                        min: 1,
+                        max: 6
+                    }
+                },
+                prev: '#blog-posts-prev',
+                next: '#blog-posts-next',
+                auto: {
+                    play: false
+                }
+            });
+            jQuery('#caroufredsel-clients-container').carouFredSel({
+                responsive: true,
+                scroll: 1,
+                circular: false,
+                infinite: false,
+                items: {
+                    visible: {
+                        min: 1,
+                        max: 6
+                    }
+                },
+                prev: '#client-prev',
+                next: '#client-next',
+                auto: {
+                    play: false
+                }
+            });
+        };
+        jQuery(window).load(function () {
+            caroufredsel();
+        });
+        jQuery(window).resize(function () {
+            caroufredsel();
+        });
+    </script>
+
+
+
+</body>
+</html>
