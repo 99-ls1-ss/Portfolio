@@ -496,6 +496,7 @@
     <Content Include="assets\rs-plugin\assets\white50.png" />
     <Content Include="assets\rs-plugin\css\settings-ie8.css" />
     <Content Include="assets\rs-plugin\css\settings.css" />
+    <Content Include="assets\rs-plugin\font\revicons1.svg" />
     <Content Include="assets\rs-plugin\font\revicons.svg" />
     <Content Include="assets\rs-plugin\images\decor_inside.png" />
     <Content Include="assets\rs-plugin\images\decor_inside_white.png" />
@@ -669,6 +670,7 @@
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\revicons.svg" />
+    <Content Include="fonts\revicons1.svg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\application.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -714,7 +716,7 @@
     <Content Include="assets\rs-plugin\assets\small_arrows.psd" />
     <Content Include="assets\rs-plugin\font\revicons.eot" />
     <Content Include="assets\rs-plugin\font\revicons.ttf" />
-    <Content Include="assets\rs-plugin\font\revicons.woff" />
+    <Content Include="assets\rs-plugin\font\revicons_bak.woff" />
     <Content Include="assets\UItoTop\readme.md" />
     <Content Include="Content\Images\portfolio\desktop.ini" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
@@ -732,6 +734,13 @@
     <Content Include="assets\Content\assets\arrows.psd" />
     <Content Include="assets\Content\assets\bullets.psd" />
     <Content Include="assets\Content\assets\small_arrows.psd" />
+    <Content Include="assets\rs-plugin\font\revicons.woff" />
+    <Content Include="assets\rs-plugin\font\revicons1.eot" />
+    <Content Include="assets\rs-plugin\font\revicons1.ttf" />
+    <Content Include="assets\rs-plugin\font\revicons1.woff" />
+    <Content Include="fonts\revicons1.woff" />
+    <Content Include="fonts\revicons1.eot" />
+    <Content Include="fonts\revicons1.ttf" />
     <None Include="Properties\PublishProfiles\brandonpayne - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\brandonpayne - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
