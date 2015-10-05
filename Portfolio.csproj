@@ -549,6 +549,7 @@
     <Content Include="Content\Images\boxed_bgtile.png" />
     <Content Include="Content\Images\buffaloOwl.jpg" />
     <Content Include="Content\Images\buffaloTiger.jpg" />
+    <Content Include="Content\Images\slides\brick-background.png" />
     <Content Include="Content\Images\slides\builtForYou.jpg" />
     <Content Include="Content\Images\bullet.png" />
     <Content Include="Content\Images\bullets.png" />
