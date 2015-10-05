@@ -1,24 +1,4 @@
 ﻿//Javascript script blocks
-function workMagic() {
-    var val1 = Number(document.getElementById('magNum6').value);
-    var val2 = Number(document.getElementById('magNum7').value);
-
-    var val3 = '';
-
-    for (var i = 1; i <= 100; i++) {
-        
-        val3 += !(i % val1) && !(i % val2) ? "<span>FizzBuzz</span>" :
-            !(i % val1) ? "<span>Fizz</span>" : !(i % val2) ? "<span>Buzz</span>" :
-            i;
-        if (i >= 100) {
-            val3 += " ";
-        } else {
-            val3 += ", ";
-        }
-    }
-    $('#displayMagic').html(val3)
-};
-
 function numberCalculator() {
     var val1 = Number(document.getElementById('magNum1').value);
     var val2 = Number(document.getElementById('magNum2').value);
@@ -33,12 +13,39 @@ function numberCalculator() {
     var totalNum = val1 + val2 + val3 + val4 + val5;
     var productNum = val1 * val2 * val3 * val4 * val5;
 
-    document.getElementById('displayLowest').innerHTML = lowestNum;
-    document.getElementById('displayHighest').innerHTML = highestNum;
-    document.getElementById('displayAverage').innerHTML = averageNum;
-    document.getElementById('displaySum').innerHTML = totalNum;
-    document.getElementById('displayProduct').innerHTML = productNum;
+    if (isNaN(val1) || isNaN(val2) || isNaN(val3) || isNaN(val4) || isNaN(val5)) {
+        alert('You must enter a number in each box.');
+    } else if (val1 == '' || val2 == '' || val3 == '' || val4 == '' || val5 == '') {
+        alert('One of your boxes does not have a value.');
+    } else {
+        document.getElementById('displayLowest').innerHTML = lowestNum;
+        document.getElementById('displayHighest').innerHTML = highestNum;
+        document.getElementById('displayAverage').innerHTML = averageNum;
+        document.getElementById('displaySum').innerHTML = totalNum;
+        document.getElementById('displayProduct').innerHTML = productNum;
+    }
+};
 
+function workMagic() {
+    var val1 = Number(document.getElementById('magNum6').value);
+    var val2 = Number(document.getElementById('magNum7').value);
+    var val3 = '';
+
+    for (var i = 1; i <= 100; i++) {        
+        val3 += !(i % val1) && !(i % val2) ? "<span>FizzBuzz</span>" :
+            !(i % val1) ? "<span>Fizz</span>" : !(i % val2) ? "<span>Buzz</span>" :
+            i;
+        if (i >= 100) {
+            val3 += " ";
+        } else {
+            val3 += ", ";
+        }
+    }
+    if ((isNaN(val1) || isNaN(val2)) || (val1 =='' || val2 == '')) {
+        alert('You must enter a number in each box.');
+    } else {
+        $('#displayMagic').html(val3)
+    }
 };
 
 function findFactorial() {
@@ -46,8 +53,6 @@ function findFactorial() {
     var factorialPreText = "The factorial of your number is: ";
 
     function factorial(factorialNum) {
-        // If num is 0, its factorial is 1.
-        // Else, call the recursive procedure
         if (factorialNum == 0) {
             return 1;
         } else {
@@ -55,15 +60,14 @@ function findFactorial() {
         }
     }
 
-    //Parse input to an Integer
     factorialNum = parseInt(factorialNum);
 
-    //If we did not get a number or it is less than 0
-    //return an error message
     if (typeof factorialNum === 'number' && factorialNum >= 0) {
         document.getElementById('displayFactorial').innerHTML = factorialPreText + factorial(factorialNum);
+    } else if (isNaN(factorialNum)) {
+        alert('You must enter a number.');
     } else {
-        alert('You must enter numbers greater than 0');
+        alert('You must enter numbers greater than 0.');
     }
 }
 

@@ -151,7 +151,7 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-xs-4">
-                        <div class="row">
+                        <div class="row inputSpan">
                             <div class="col-xs-2"><input type="text" id="magNum1" /></div>
                             <div class="col-xs-2"><input type="text" id="magNum2" /></div>
                             <div class="col-xs-2"><input type="text" id="magNum3" /></div>
@@ -163,7 +163,7 @@
                         <div class="row"><label class="col-xs-7">Average of All Numbers: </label><span class="col-xs-5 jsClearOnExit" id="displayAverage"></span></div>
                         <div class="row"><label class="col-xs-7">Sum of All Numbers: </label><span class="col-xs-5 jsClearOnExit" id="displaySum"></span></div>
                         <div class="row"><label class="col-xs-7">Product of All Numbers: </label><span class="col-xs-5 jsClearOnExit" id="displayProduct"></span></div>
-                        <div class="row"><div class="col-xs-7"></div><button type="button" class="btn btn-default col-xs-5 jsClearOnExit" onclick="numberCalculator()">Display Data</button></div>
+                        <div class="row"><div class="col-xs-7"></div><button type="button" class="btn btn-default col-xs-5" onclick="numberCalculator()">Display Data</button></div>
                     </div>
                     <div class="col-xs-8">
                         <pre class="brush: js">
@@ -173,17 +173,25 @@ function numberCalculator() {
     var val3 = Number(document.getElementById('magNum3').value);
     var val4 = Number(document.getElementById('magNum4').value);
     var val5 = Number(document.getElementById('magNum5').value);
+
     var lowestNum = Math.min(val1, val2, val3, val4, val5);
     var highestNum = Math.max(val1, val2, val3, val4, val5);
     var totalNum = val1 + val2 + val3 + val4 + val5;
     var averageNum = (totalNum / 5);
     var totalNum = val1 + val2 + val3 + val4 + val5;
     var productNum = val1 * val2 * val3 * val4 * val5;
-    document.getElementById('displayLowest').innerHTML = lowestNum;
-    document.getElementById('displayHighest').innerHTML = highestNum;
-    document.getElementById('displayAverage').innerHTML = averageNum;
-    document.getElementById('displaySum').innerHTML = totalNum;
-    document.getElementById('displayProduct').innerHTML = productNum;
+
+    if (isNaN(val1) || isNaN(val2) || isNaN(val3) || isNaN(val4) || isNaN(val5))  {
+        alert('You must enter a number in each box.');
+    } else if (val1 == '' || val2 == '' || val3 == '' || val4 == '' || val5 == '') {
+        alert('One of your boxes does not have a value.');
+    } else {
+        document.getElementById('displayLowest').innerHTML = lowestNum;
+        document.getElementById('displayHighest').innerHTML = highestNum;
+        document.getElementById('displayAverage').innerHTML = averageNum;
+        document.getElementById('displaySum').innerHTML = totalNum;
+        document.getElementById('displayProduct').innerHTML = productNum;        
+    }
 };
                         </pre>
                     </div>
@@ -206,10 +214,10 @@ function numberCalculator() {
                 <div class="row">
                     <div class="col-xs-4">
                         <div class="row">
-                            <label class="col-xs-10">Enter a number between 1 and 100.</label><span class="col-xs-2"><input type="text" id="magNum6" /></span>
+                            <label class="col-xs-10">Enter a number between 1 and 100.</label><span class="col-xs-2"><input type="number" id="magNum6" /></span>
                         </div>
                         <div class="row">
-                            <label class="col-xs-10">Enter a number between 1 and 100.</label><span class="col-xs-2"><input type="text" id="magNum7" /></span>
+                            <label class="col-xs-10">Enter a number between 1 and 100.</label><span class="col-xs-2"><input type="number" id="magNum7" /></span>
                         </div>
                         <div class="row"><div class="spacer"></div></div>
                         <div class="row"><div class="col-xs-7"></div><button type="button" class="btn btn-default col-xs-5" onclick="workMagic()">Work Magic</button></div>
@@ -221,8 +229,7 @@ function workMagic() {
     var val1 = Number(document.getElementById('magNum6').value);
     var val2 = Number(document.getElementById('magNum7').value);
     var val3 = '';
-    for (var i = 1; i <= 100; i++) {
-        
+    for (var i = 1; i <= 100; i++) {        
         val3 += !(i % val1) && !(i % val2) ? "<span>FizzBuzz</span>" :
             !(i % val1) ? "<span>Fizz</span>" : !(i % val2) ? "<span>Buzz</span>" :
             i;
@@ -232,7 +239,11 @@ function workMagic() {
             val3 += ", ";
         }
     }
-    $('#displayMagic').html(val3)
+    if ((isNaN(val1) || isNaN(val2)) || (val1 =='' || val2 == '')) {
+        alert('You must enter a number in each box.');
+    } else {
+        $('#displayMagic').html(val3)
+    }
 };
                         </pre>
                     </div>
@@ -258,7 +269,7 @@ function workMagic() {
                     <div class="col-xs-3">
                         <div class="row">
                             <div class="col-xs-4">
-                                <input type="text" id="findFact" />
+                                <input type="number" id="findFact" />
                             </div>
                             <button type="button" class="btn btn-default col-xs-8" onclick="findFactorial()">Calculate Factorial</button>
                         </div>
@@ -271,22 +282,19 @@ function findFactorial() {
     var factorialNum = Number(document.getElementById('findFact').value);
     var factorialPreText = "The factorial of your number is: ";
     function factorial(factorialNum) {
-        // If num is 0, its factorial is 1.
-        // Else, call the recursive procedure
         if (factorialNum == 0) {
             return 1;
         } else {
             return (factorialNum * factorial(factorialNum - 1));
         }
     }
-    //Parse input to an Integer
     factorialNum = parseInt(factorialNum);
-    //If we did not get a number or it is less than 0
-    //return an error message
     if (typeof factorialNum === 'number' && factorialNum >= 0) {
         document.getElementById('displayFactorial').innerHTML = factorialPreText + factorial(factorialNum);
+    } else if (isNaN(factorialNum)) {
+        alert('You must enter a number.');
     } else {
-        alert('You must enter numbers greater than 0');
+        alert('You must enter numbers greater than 0.');
     }
 }
                         </pre>
