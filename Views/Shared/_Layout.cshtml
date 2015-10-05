@@ -7,8 +7,6 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
-    @*<link href="~/Content/pygments-manni.css" rel="stylesheet" />
-    <link href="~/Content/docs.css" rel="stylesheet" />*@
     <link href="~/Content/ui.totop.css" rel="stylesheet" />
     <link href="~/Content/prettyPhoto.css" rel="stylesheet" />
     <link href="~/Content/settings.css" rel="stylesheet" />
@@ -18,7 +16,7 @@
     <link href="~/Scripts/SyntaxHighlighter/styles/shCore.css" rel="stylesheet" />
     <link href="~/Scripts/SyntaxHighlighter/styles/shThemeDefault.css" rel="stylesheet" />
     <link href="~/Content/myStyles.css" rel="stylesheet" />
-    <!-- Font Awesome  -->
+
     <link href="~/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 
 
@@ -84,8 +82,6 @@
                             <li class="dropdown @(ViewBag.Title == "Contact Me" ? "active" : "")">
                                 <a href="@Url.Action("Index","Contact")">Contact</a>
                             </li>
-                            
-
                         </ul>
                         <!-- /.nav -->
                     </div>
@@ -102,7 +98,6 @@
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12 col-sm-6 footer-info-wrapper">
-                        @*@{var dt = System.DateTime.Now}*@
                         <span>Copyright © PayneSolutions @System.DateTime.Now.ToString("yyyy")</span>
                     </div>
                     <!-- /.footer-info-wrapper -->
