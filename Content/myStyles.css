@@ -8,7 +8,7 @@
 
 .modal-dialog.numbersGame {
     width:auto;
-    max-width: 870px;
+    max-width: 1000px;
 }
 
 .modal-dialog.numberChanger, .modal-dialog.palindromeChecker {
@@ -21,10 +21,15 @@
     max-width: 1100px;
 }
 
-.numbersGame input, .numberChanger input {
+.numberChanger input {
     max-width:4em;
     margin-top:1%;
     margin-bottom:10%; 
+}
+
+.numbersGame input {
+    max-width: 97.5%;
+    margin: 1% .5% 10% .5%;
 }
 
 .findFact input {
@@ -40,8 +45,18 @@
 }
 
 .numbersGame .col-xs-2 {
-    width:18.8666666666666664%;
+    width: 20%;
 }
+
+.inputSpan {
+    margin:0 auto;
+}
+
+.inputSpan div.col-xs-2 {
+    padding:0;
+    text-align: center;
+}
+
 
 .numbersGame label, .numberChanger label {
     text-align:right;
