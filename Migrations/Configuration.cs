@@ -10,6 +10,7 @@ namespace Portfolio.Migrations {
     internal sealed class Configuration : DbMigrationsConfiguration<Portfolio.Models.ApplicationDbContext> {
         public Configuration() {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(Portfolio.Models.ApplicationDbContext context) {
@@ -29,7 +30,8 @@ namespace Portfolio.Migrations {
                     Email = "brandon@navicamls.net",
                     FirstName = "Brandon",
                     LastName = "Payne",
-                    DisplayName = "Brandon Payne"
+                    DisplayName = "Brandon Payne",
+                    CanPost = true
                 },
                     "billybob");
             }

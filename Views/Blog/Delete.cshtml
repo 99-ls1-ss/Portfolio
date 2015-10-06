@@ -1,0 +1,21 @@
+﻿@model Portfolio.Models.BlogPost
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <form action="@Url.Action("Delete","Blog")" method="post">
+                    Title: <input type="text" name="Title" />
+                    Body: <input type="text" name="Body" />
+                    <input type="radio" value="" />
+                    <button type="submit">Delete Blog</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
