@@ -1,186 +1,90 @@
-﻿
+﻿@model IEnumerable<Portfolio.Models.BlogPost>
+@using Microsoft.AspNet.Identity
+
 @{
     ViewBag.Title = "My Blog";
 }
 
-
 <section id="blog-posts" class="section colored-wrapper">
     <div class="container">
-        <h2>@ViewBag.Title</h2>
-        <h3>@ViewBag.Message</h3>
+        <div class="row">
+            <div class="col-xs-9">
+                <h2>@ViewBag.Title</h2>
+                <h3>@ViewBag.Message</h3>
+            </div>
+            <div class="col-xs-3 blogAccount">
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
         <div class="wrapper-2">
             <h5 class="subpage-title">
-                <span>Latest Blog Posts</span>
-                <!-- Controls -->
-                <span id="blog-posts-next" class="next black"><i class="icon-angle-right"></i></span>
-                <span id="blog-posts-prev" class="prev black"><i class="icon-angle-left"></i></span>
+                <span>Welcome to Brandon's Blog</span>
             </h5>
             <div class="row">
-                <div id="caroufredsel-blog-posts-container">
-                    <div class="col-xs-12 col-sm-6 col-md-4">
-                        <article class="post post-2">
-                            <div class="post-thumb">
-                                <a href="~/Content/images/blog/photo (16).jpg"><img src="~/Content/images/blog/photo (16).jpg" class="img-responsive" alt="Responsive image"></a>
+                <div class="col-md-12 content-wrapper">
+                    @if (User.IsInRole("Admin")) {
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a href="@Url.Action("Create", "Blog")" class="pull-right">Create New Post</a>
                             </div>
-                            <!-- /.post-thumb -->
-                            <div class="post-content">
-                                <h5 class="post-title"><a href="post-1.html">The Ultimate Guide to Adjustment Layers – Vibrance</a></h5>
-                            </div>
-                            <!-- /.post-content -->
-                            <div class="post-meta">
-                                <ul class="meta-list">
-                                    <li>
-                                        <span>Posted on</span>
-                                        <span class="black">10 July 2013</span>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- /.post-meta -->
-                        </article>
-                        <!-- /.post -->
-                    </div>
-                    <!-- /.col-md-4 -->
-                    <div class="col-xs-12 col-sm-6 col-md-4">
-                        <article class="post post-2">
-                            <div class="post-slider">
-                                <div id="carousel-example-generic" class="carousel slide">
-                                    <!-- Wrapper for slides -->
-                                    <div class="carousel-inner">
-                                        <div class="item active">
-                                            <img src="~/Content/images/blog/photo (10).jpg" class="img-responsive" alt="Carousel Image">
-                                        </div>
-                                        <div class="item">
-                                            <img src="~/Content/images/blog/photo (9).jpg" class="img-responsive" alt="Carousel Image">
-                                        </div>
-                                        <div class="item">
-                                            <img src="~/Content/images/blog/photo (13).jpg" class="img-responsive" alt="Carousel Image">
-                                        </div>
+                        </div>
+                    }
+
+                    @foreach (var item in Model) {
+                        if (item.IsPublished || User.IsInRole("Admin")) {
+                            <div class="col-xs-12 col-sm-6 col-md-4">
+                                <article class="post">
+                                    <div class="post-thumb">
+                                        <a href="@Url.Action("Details", new { Slug = item.Slug })">
+                                            @if (item.MediaURL != null) {
+                                                <img src="@item.MediaURL" class="img-responsive" alt="@item.Title" />
+                                            } else {
+                                                <img src="/Content/Images/blog/photo (1).jpg" class="img-responsive" alt="Responsive image" />
+                                            }
+                                        </a>
                                     </div>
-                                    <!-- Controls -->
-                                    <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-                                        <span class="glyphicon glyphicon-chevron-left"></span>
-                                    </a>
-                                    <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-                                        <span class="glyphicon glyphicon-chevron-right"></span>
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- /.post-slider -->
-                            <div class="post-content">
-                                <h5 class="post-title"><a href="post-1.html">Complete Guide to What’s New in Adobe Photoshop 14.1</a></h5>
-                            </div>
-                            <!-- /.post-content -->
-                            <div class="post-meta">
-                                <ul class="meta-list">
-                                    <li>
-                                        <span>Posted on</span>
-                                        <span class="black">15 July 2013</span>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- /.post-meta -->
-                        </article>
-                        <!-- /.post -->
-                    </div>
-                    <!-- /.col-md-4 -->
-                    <div class="col-xs-12 col-sm-6 col-md-4">
-                        <article class="post post-2">
-                            <div class="responsive-video-wrapper">
-                                <iframe src="//player.vimeo.com/video/25708134?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff" width="800" height="400" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-                            </div>
-                            <!-- /.responsive-video-wrapper -->
-                            <div class="post-content">
-                                <h5 class="post-title"><a href="post-1.html">How to Integrate Lightroom Into Your Photoshop Workflow</a></h5>
-                            </div>
-                            <!-- /.post-content -->
-                            <div class="post-meta">
-                                <ul class="meta-list">
-                                    <li>
-                                        <span>Posted on</span>
-                                        <span class="black">20 July 2013</span>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- /.post-meta -->
-                        </article>
-                        <!-- /.post -->
-                    </div>
-                    <!-- /.col-md-4 -->
-                    <div class="col-xs-12 col-sm-6 col-md-4">
-                        <article class="post post-2">
-                            <div class="post-thumb">
-                                <a href="~/Content/images/blog/photo (3).jpg"><img src="~/Content/images/blog/photo (3).jpg" class="img-responsive" alt="Responsive image"></a>
-                            </div>
-                            <!-- /.post-thumb -->
-                            <div class="post-content">
-                                <h5 class="post-title"><a href="post-1.html">The Ultimate Guide to Adjustment Layers – Vibrance</a></h5>
-                            </div>
-                            <!-- /.post-content -->
-                            <div class="post-meta">
-                                <ul class="meta-list">
-                                    <li>
-                                        <span>Posted on</span>
-                                        <span class="black">25 July 2013</span>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- /.post-meta -->
-                        </article>
-                        <!-- /.post -->
-                    </div>
-                    <!-- /.col-md-4 -->
-                    <div class="col-xs-12 col-sm-6 col-md-4">
-                        <article class="post post-2">
-                            <div class="post-slider">
-                                <div id="carousel-example-generic" class="carousel slide">
-                                    <!-- Wrapper for slides -->
-                                    <div class="carousel-inner">
-                                        <div class="item active">
-                                            <img src="~/Content/images/blog/photo (13).jpg" class="img-responsive" alt="Carousel Image">
-                                        </div>
-                                        <div class="item">
-                                            <img src="~/Content/images/blog/photo (9).jpg" class="img-responsive" alt="Carousel Image">
-                                        </div>
-                                        <div class="item">
-                                            <img src="~/Content/images/blog/photo (10).jpg" class="img-responsive" alt="Carousel Image">
-                                        </div>
+                                    <!-- /.post-thumb -->
+                                    <div class="post-content">
+                                        <h4 class="post-title">
+                                            <a href="@Url.Action("Details", new { Slug = item.Slug })">@item.Title</a>
+                                        </h4>
+                                        <div class="blogBody">@Html.Raw(item.Body)</div>
                                     </div>
-                                    <!-- Controls -->
-                                    <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-                                        <span class="glyphicon glyphicon-chevron-left"></span>
-                                    </a>
-                                    <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-                                        <span class="glyphicon glyphicon-chevron-right"></span>
-                                    </a>
-                                </div>
+                                    <!-- /.post-content -->
+                                    <div class="post-meta">
+                                        <ul class="meta-list row">
+                                            <li class="col-md-12"><span>Posted on</span><span class="black">@item.Created</span></li>
+                                            @if (User.IsInRole("Admin")) {
+                                                <li class="col-md-3"><a href="@Url.Action("Edit", "Blog", new { id = item.Id })" class="editDeleteLink">Edit Post</a></li>
+                                                <li class="col-md-4"><a href="@Url.Action("Delete", "Blog", new { id = item.Id })" class="editDeleteLink">Delete Post</a></li>
+                                                <li class="col-xs-5"><a class="read-more" href="@Url.Action("Details", new { Slug = item.Slug })">Read More <i class="icon-long-arrow-right pull-right"></i></a></li>
+                                            } else {
+                                                <li class="col-xs-12"><a class="read-more" href="@Url.Action("Details", new { Slug = item.Slug })">Read More <i class="icon-long-arrow-right pull-right"></i></a></li>
+                                            }
+                                        </ul>
+                                    </div>
+                                    <!-- /.post-meta -->
+
+                                </article>
+
+                                <!-- /.article -->
+                                <!-- /.post-meta -->
+                                <!-- /.post -->
                             </div>
-                            <!-- /.post-slider -->
-                            <div class="post-content">
-                                <h5 class="post-title"><a href="post-1.html">Complete Guide to What’s New in Adobe Photoshop 14.1</a></h5>
-                            </div>
-                            <!-- /.post-content -->
-                            <div class="post-meta">
-                                <ul class="meta-list">
-                                    <li>
-                                        <span>Posted on</span>
-                                        <span class="black">30 July 2013</span>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- /.post-meta -->
-                        </article>
-                        <!-- /.post -->
-                    </div>
-                    <!-- /.col-md-4 -->
+                        }
+
+                    }
+
                 </div>
                 <!-- /#caroufredsel-blog-posts-container -->
             </div>
             <!-- /.row -->
             <div class="row">
                 <div class="container">
-                    <div class="col-xs-10"></div>
-                    <div class="col-xs-2">
-                        <a href="@Url.Action("Login","Account")"><h4>Login</h4></a>
+                    <div class="col-xs-9"></div>
+                    <div class="col-xs-3 blogAccount">
+                        <a href="@Url.Action("Login","Account")"><h5>Login</h5></a>
+                        <a href="@Url.Action("Register","Account")"><h5>Register</h5></a>
                     </div>
                 </div>
             </div>
@@ -189,5 +93,5 @@
     </div>
     <!-- /.container -->
 </section>
-<!-- /#blog-posts -->
 
+<!-- /#blog-posts -->

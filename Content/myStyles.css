@@ -176,6 +176,15 @@
 
 .blogBody {
     background-color:#fff;
-    padding:1em;
+    padding:.5em .25em;
     border:1px solid #bfbfbf;
+}
+
+.post-thumb img {
+    max-height:13em;
+    margin:0 auto;
+}
+
+.post-meta {
+    margin-top:10px;
 }
