@@ -13,6 +13,8 @@ namespace Portfolio.Models {
         public string LastName { get; set; }
         public string DisplayName { get; set; }
         public bool CanPost { get; set; }
+        public bool IsLoggedIn { get; set; }
+        public string AccessLevel { get; set; }
 
         public ApplicationUser() {
             this.BlogComments = new HashSet<Comment>();

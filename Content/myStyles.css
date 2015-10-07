@@ -174,7 +174,8 @@
     height:14em;
 }
 
-.post-content p {
+.blogBody {
     background-color:#fff;
     padding:1em;
+    border:1px solid #bfbfbf;
 }

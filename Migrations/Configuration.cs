@@ -17,9 +17,15 @@ namespace Portfolio.Migrations {
             var roleManager = new RoleManager<IdentityRole>(
                 new RoleStore<IdentityRole>(context));
 
-            if (!context.Roles.Any(r => r.Name == "Admin")) {
+            if (!context.Users.Any(u => u.Email == "brandon@navicamls.net")) {
                 roleManager.Create(new IdentityRole { Name = "Admin" });
             }
+            else {
+                roleManager.Create(new IdentityRole { Name = "User" });
+            };
+            //if (!context.Roles.Any(r => r.Name == "Admin")) {
+            //    roleManager.Create(new IdentityRole { Name = "Admin" });
+            //}
 
             var userManager = new UserManager<ApplicationUser>(
                 new UserStore<ApplicationUser>(context));
@@ -31,6 +37,8 @@ namespace Portfolio.Migrations {
                     FirstName = "Brandon",
                     LastName = "Payne",
                     DisplayName = "Brandon Payne",
+                    EmailConfirmed = true,
+                    IsLoggedIn = true,
                     CanPost = true
                 },
                     "billybob");
