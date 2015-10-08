@@ -17,10 +17,11 @@ namespace Portfolio.Migrations {
             var roleManager = new RoleManager<IdentityRole>(
                 new RoleStore<IdentityRole>(context));
 
-            if (!context.Users.Any(u => u.Email == "brandon@navicamls.net")) {
+            if (context.Users.Any(u => u.Email == "brandon@navicamls.net")) {
                 roleManager.Create(new IdentityRole { Name = "Admin" });
-            }
-            else {
+            } else if (context.Users.Any(u => u.Email == "moderator@coderfoundry.com")) {
+                roleManager.Create(new IdentityRole { Name = "Moderator" });
+            } else {
                 roleManager.Create(new IdentityRole { Name = "User" });
             };
             //if (!context.Roles.Any(r => r.Name == "Admin")) {
@@ -46,6 +47,10 @@ namespace Portfolio.Migrations {
 
             var userId = userManager.FindByEmail("brandon@navicamls.net").Id;
             userManager.AddToRole(userId, "Admin");
+            var userIdMod = userManager.FindByEmail("moderator@coderfoundry.com").Id;
+            userManager.AddToRole(userIdMod, "Moderator");
+            //var userIdUser = userManager.FindByEmail("brandon@navicamls.net").Id;
+            //userManager.AddToRole(userIdUser, "User");
         }
     }
 }

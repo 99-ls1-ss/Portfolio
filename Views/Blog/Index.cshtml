@@ -3,7 +3,6 @@
 
 @{
     ViewBag.Title = "My Blog";
-    var ctr = 0;
 }
 
 <section id="blog-posts" class="section colored-wrapper">
@@ -30,57 +29,54 @@
                             </div>
                         </div>
                     }
-                    @*@{ if (ctr => "3")}*@
-                    <div class="row">
-                        @foreach (var item in Model) {
-                            if (item.IsPublished || User.IsInRole("Admin")) {
-                                <div class="col-xs-12 col-sm-6 col-md-4">
-                                    <article class="post">
-                                        <div class="post-thumb">
-                                            <a href="@Url.Action("Details", new { Slug = item.Slug })">
-                                                @if (item.MediaURL != null) {
-                                                    <img src="@item.MediaURL" class="img-responsive" alt="@item.Title" />
-                                                } else {
-                                                    <img src="/Content/Images/blog/photo (1).jpg" class="img-responsive" alt="Responsive image" />
-                                                }
-                                            </a>
-                                        </div>
-                                        <!-- /.post-thumb -->
-                                        <div class="post-content">
-                                            <h4 class="post-title">
-                                                <a href="@Url.Action("Details", new { Slug = item.Slug })">@item.Title</a>
-                                            </h4>
-                                            <div class="blogBody">@Html.Raw(item.Body)</div>
-                                        </div>
-                                        <!-- /.post-content -->
-                                        <div class="post-meta">
-                                            <ul class="meta-list row">
-                                                <li class="col-md-12"><span>Posted on</span><span class="black">@item.Created</span></li>
-                                                @if (User.IsInRole("Admin")) {
-                                                    <li class="col-md-3"><a href="@Url.Action("Edit", "Blog", new { id = item.Id })" class="editDeleteLink">Edit Post</a></li>
-                                                    <li class="col-md-4"><a href="@Url.Action("Delete", "Blog", new { id = item.Id })" class="editDeleteLink">Delete Post</a></li>
-                                                    <li class="col-xs-5"><a class="read-more pull-right" href="@Url.Action("Details", new { Slug = item.Slug })">Read More <i class="icon-long-arrow-right pull-right"></i></a></li>
-                                                } else {
-                                                    <li class="col-xs-12"><a class="read-more pull-right" href="@Url.Action("Details", new { Slug = item.Slug })">Read More <i class="icon-long-arrow-right pull-right"></i></a></li>
-                                                }
-                                            </ul>
-                                        </div>
-                                        <!-- /.post-meta -->
-
-                                    </article>
-
-                                    <!-- /.article -->
-                                    <!-- /.post-meta -->
-                                    <!-- /.post -->
-                                </div>
-                            }
-                            @{ctr = ctr + 1;}
-                        
-                        }
-                    </div>
                 </div>
-                <!-- /#caroufredsel-blog-posts-container -->
             </div>
+            <div class="row test">
+                @foreach (var item in Model) {
+                    if (item.IsPublished || User.IsInRole("Admin")) {
+                        <div class="col-xs-12 col-sm-6 col-md-4">
+                            <article class="post">
+                                <div class="post-thumb">
+                                    <a href="@Url.Action("Details", new { Slug = item.Slug })">
+                                        @if (item.MediaURL != null) {
+                                            <img src="@item.MediaURL" class="img-responsive" alt="@item.Title" />
+                                        } else {
+                                            <img src="/Content/Images/blog/photo (1).jpg" class="img-responsive" alt="Responsive image" />
+                                        }
+                                    </a>
+                                </div>
+                                <!-- /.post-thumb -->
+                                <div class="post-content">
+                                    <h4 class="post-title">
+                                        <a href="@Url.Action("Details", new { Slug = item.Slug })">@item.Title</a>
+                                    </h4>
+                                    <div class="blogBody jsBlogBody">@Html.Raw(item.Body)</div>
+                                </div>
+                                <!-- /.post-content -->
+                                <div class="post-meta">
+                                    <ul class="meta-list row">
+                                        <li class="col-md-12"><span>Posted on</span><span class="black">@item.Created</span></li>
+                                        @if (User.IsInRole("Admin")) {
+                                            <li class="col-md-3"><a href="@Url.Action("Edit", "Blog", new { id = item.Id })" class="editDeleteLink">Edit Post</a></li>
+                                            <li class="col-md-4"><a href="@Url.Action("Delete", "Blog", new { id = item.Id })" class="editDeleteLink">Delete Post</a></li>
+                                            <li class="col-xs-5"><a class="read-more pull-right" href="@Url.Action("Details", new { Slug = item.Slug })">Read More <i class="icon-long-arrow-right pull-right"></i></a></li>
+                                        } else {
+                                            <li class="col-xs-12"><a class="read-more pull-right" href="@Url.Action("Details", new { Slug = item.Slug })">Read More <i class="icon-long-arrow-right pull-right"></i></a></li>
+                                        }
+                                    </ul>
+                                </div>
+                                <!-- /.post-meta -->
+
+                            </article>
+
+                            <!-- /.article -->
+                            <!-- /.post-meta -->
+                            <!-- /.post -->
+                        </div>
+                    }
+                }
+            </div>
+
             <!-- /.row -->
             <div class="row">
                 <div class="container">
@@ -91,9 +87,8 @@
                 </div>
             </div>
         </div>
-        <!-- /.wrapper-2 -->
+    <!-- /.wrapper-2 -->
     </div>
-    <!-- /.container -->
+<!-- /.container -->
 </section>
 
-<!-- /#blog-posts -->

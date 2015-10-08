@@ -176,8 +176,9 @@
 
 .blogBody {
     background-color:#fff;
-    padding:.5em .25em;
-    border:1px solid #bfbfbf;
+    min-height:58px;
+    padding:6px 4px;
+    border:1px solid #e8e8e8;
 }
 
 .post-thumb img {

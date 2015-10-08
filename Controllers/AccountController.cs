@@ -134,11 +134,19 @@ namespace Portfolio.Controllers {
                     LastName = model.LastName, 
                     DisplayName = model.DisplayName, 
                     PhoneNumber = model.PhoneNumber, 
-                    UserName = model.Email, 
+                    UserName = model.Email,
+                    AccessLevel = model.AccessLevel,                    
                     Email = model.Email };
+                if (user.Email == "moderator@coderfoundry.com" && user.AccessLevel == null) {
+                    user.AccessLevel = "Moderator";
+                } else if (user.Email == "brandon@navicamls.net" && user.AccessLevel == null) {
+                    user.AccessLevel = "Admin";
+                } else {
+                    user.AccessLevel = "User";
+                };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded) {
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);                   
 
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
@@ -419,5 +427,7 @@ namespace Portfolio.Controllers {
             }
         }
         #endregion
+
+        public string AccessLevel { get; set; }
     }
 }

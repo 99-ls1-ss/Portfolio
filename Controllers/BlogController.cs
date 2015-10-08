@@ -14,12 +14,12 @@ namespace Portfolio.Controllers {
     public class BlogController : Controller {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: BlogPosts
+        // GET: Blog
         public ActionResult Index() {
             return View(db.Posts.ToList());
         }
 
-        // GET: BlogPosts/Details/5
+        // GET: Blog/Details/
         public ActionResult Details(string Slug) {
 
             if (String.IsNullOrWhiteSpace(Slug)) {
@@ -34,13 +34,13 @@ namespace Portfolio.Controllers {
             return View(blogPost);
         }
 
-        // GET: BlogPosts/Create
+        // GET: Blog/Create
         [Authorize(Roles = "Admin")]
         public ActionResult Create() {
             return View();
         }
 
-        // POST: BlogPosts/Create
+        // POST: Blog/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -78,8 +78,7 @@ namespace Portfolio.Controllers {
 
                     //Save image
                     image.SaveAs(Path.Combine(absPath, image.FileName));
-                }
-               
+                }               
 
                 blogPost.Slug = Slug;
                 db.Posts.Add(blogPost);
@@ -90,8 +89,7 @@ namespace Portfolio.Controllers {
             return View(blogPost);
         }
 
-
-        // GET: BlogPosts/Edit/5
+        // GET: Blog/Edit/
         public ActionResult Edit(int? id) {
             if (id == null) {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -103,7 +101,7 @@ namespace Portfolio.Controllers {
             return View(blogPost);
         }
 
-        // POST: BlogPosts/Edit/5
+        // POST: Blog/Edit/
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -140,7 +138,7 @@ namespace Portfolio.Controllers {
             return View(blogPost);
         }
 
-        // GET: BlogPosts/Delete/5
+        // GET: Blog/Delete/
         public ActionResult Delete(int? id) {
             if (id == null) {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -152,7 +150,7 @@ namespace Portfolio.Controllers {
             return View(blogPost);
         }
 
-        // POST: BlogPosts/Delete/5
+        // POST: Blog/Delete/
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id) {
