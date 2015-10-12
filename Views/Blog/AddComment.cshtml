@@ -4,18 +4,16 @@
 <form class="comment-form" method="post" action="@Url.Action("AddComment")">
     @Html.HiddenFor(m => m.PostId)
     @Html.HiddenFor(m => m.Slug)
-    @*@Html.HiddenFor(m => m.Author)*@
-    @*@Html.HiddenFor(m => m.AuthorId)
-    @Html.HiddenFor(m => m.Created)*@
 
     <h5 class="subpage-title">Add Comment</h5>
     <div class="row">
         <div class="col-md-6">
-            @Html.TextAreaFor(m => m.Author, new { @class = "form-control", @placeholder = "Name (required)" })
+            @Html.TextBoxFor(m => m.Author, new { @class = "form-control", @placeholder = "Name (required)" })
             @*<input class="form-control" name="" placeholder="Name (required)" type="text">*@
         </div>
         <div class="col-md-6">
-            <input class="form-control" name="" placeholder="Email (required)" type="text">
+            @Html.TextBoxFor(m => m.AuthorId, new { @class = "form-control", @placeholder = "Name (required)" })
+            @*<input class="form-control" name="" placeholder="Email (required)" type="text">*@
         </div>
         @*<div class="col-md-4">
             <input class="form-control" name="" placeholder="Website" type="text">

@@ -46,7 +46,7 @@ namespace Portfolio.Controllers {
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Created,Updated,Title,Slug,Body,MediaURL,IsPublished,IsLoggedIn,AccessLevel")] BlogPost blogPost, HttpPostedFileBase image) {
             if (image != null && image.ContentLength > 0) {
                 //Check the file name to make sure it's a image
@@ -66,7 +66,7 @@ namespace Portfolio.Controllers {
                 if (db.Posts.Any(p => p.Slug == Slug)) {
                     ModelState.AddModelError("Title", "Your Title must be unique.");
                     return View(blogPost);
-                }                
+                }
 
                 if (image != null) {
                     //relative server path
@@ -107,7 +107,7 @@ namespace Portfolio.Controllers {
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Created,Updated,Title,Slug,Body,MediaURL,IsPublished,IsLoggedIn,AccessLevel")] BlogPost blogPost, HttpPostedFileBase image) {
             if (image != null && image.ContentLength > 0) {
                 //Check the file name to make sure it's a image
@@ -141,6 +141,7 @@ namespace Portfolio.Controllers {
         }
 
         // GET: Blog/Delete/
+        //[Authorize(Roles = "Admin", "Moderator")]
         public ActionResult Delete(int? id) {
             if (id == null) {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -154,7 +155,7 @@ namespace Portfolio.Controllers {
 
         // POST: Blog/Delete/
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id) {
             BlogPost blogPost = db.Posts.Find(id);
             db.Posts.Remove(blogPost);
@@ -162,11 +163,15 @@ namespace Portfolio.Controllers {
             return RedirectToAction("Index");
         }
 
-        public ActionResult AddComment(Comment comment) {
+        [HttpPost]
+        public ActionResult AddComment(Comment newComment) {
 
+            BlogPost Comments = new BlogPost();
             //Save comment to database
+            db.Posts.Add(Comments);
 
-            return Details(comment.Slug);
+
+            return Details(newComment.Slug);
         }
 
         protected override void Dispose(bool disposing) {

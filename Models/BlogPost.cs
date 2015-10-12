@@ -14,9 +14,11 @@ namespace Portfolio.Models {
 
         public int Id { get; set; }
         [Display(Name = "Date Created")]
-        public System.DateTimeOffset Created { get; set; }
+        public DateTimeOffset Created { get; set; }
+        //public DateTime Created { get { return DateTime; } }
         [Display(Name = "Date Updated")]
         public Nullable<System.DateTimeOffset> Updated { get; set; }
+        //public Nullable<System.DateTimeOffset> Updated { get; set; }
         [Required]
         [Display(Name = "Title")]
         public string Title { get; set; }
