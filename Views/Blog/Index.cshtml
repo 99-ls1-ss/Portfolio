@@ -8,11 +8,11 @@
 <section id="blog-posts" class="section colored-wrapper">
     <div class="container">
         <div class="row">
-            <div class="col-xs-9">
+            <div class="col-xs-7">
                 <h2>@ViewBag.Title</h2>
                 <h3>@ViewBag.Message</h3>
             </div>
-            <div class="col-xs-3 blogAccount">
+            <div class="col-xs-5 blogAccount">
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
@@ -33,7 +33,7 @@
             </div>
             <div class="row test">
                 @foreach (var item in Model) {
-                    if (item.IsPublished || User.IsInRole("Admin")) {
+                    if (item.IsPublished || User.IsInRole("Admin") || User.IsInRole("Moderator")) {
                         <div class="col-xs-12 col-sm-6 col-md-4">
                             <article class="post">
                                 <div class="post-thumb">
@@ -56,7 +56,7 @@
                                 <div class="post-meta">
                                     <ul class="meta-list row">
                                         <li class="col-md-12"><span>Posted on</span><span class="black">@item.Created</span></li>
-                                        @if (User.IsInRole("Admin")) {
+                                        @if (User.IsInRole("Admin") || User.IsInRole("Moderator")) {
                                             <li class="col-md-3"><a href="@Url.Action("Edit", "Blog", new { id = item.Id })" class="editDeleteLink">Edit Post</a></li>
                                             <li class="col-md-4"><a href="@Url.Action("Delete", "Blog", new { id = item.Id })" class="editDeleteLink">Delete Post</a></li>
                                             <li class="col-xs-5"><a class="read-more pull-right" href="@Url.Action("Details", new { Slug = item.Slug })">Read More <i class="icon-long-arrow-right pull-right"></i></a></li>

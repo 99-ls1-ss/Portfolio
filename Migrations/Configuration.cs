@@ -17,17 +17,19 @@ namespace Portfolio.Migrations {
             var roleManager = new RoleManager<IdentityRole>(
                 new RoleStore<IdentityRole>(context));
 
-            if (context.Users.Any(u => u.Email == "brandon@navicamls.net")) {
+            if (!context.Users.Any(u => u.Email == "brandon@navicamls.net")) {
                 roleManager.Create(new IdentityRole { Name = "Admin" });
-            } else if (context.Users.Any(u => u.Email == "moderator@coderfoundry.com")) {
+            } else if (!context.Users.Any(u => u.Email == "moderator@coderfoundry.com")) {
                 roleManager.Create(new IdentityRole { Name = "Moderator" });
             } else {
                 roleManager.Create(new IdentityRole { Name = "User" });
             };
-            //if (!context.Roles.Any(r => r.Name == "Admin")) {
-            //    roleManager.Create(new IdentityRole { Name = "Admin" });
-            //}
-
+            if (!context.Roles.Any(r => r.Name == "Admin")) {
+                roleManager.Create(new IdentityRole { Name = "Admin" });
+            } else if (!context.Roles.Any(r => r.Name == "Moderator")) {
+                roleManager.Create(new IdentityRole { Name = "Moderator" });
+            }
+            ;
             var userManager = new UserManager<ApplicationUser>(
                 new UserStore<ApplicationUser>(context));
 
@@ -43,6 +45,18 @@ namespace Portfolio.Migrations {
                     CanPost = true
                 },
                     "billybob");
+            } else if (!context.Users.Any(u => u.Email == "moderator@coderfoundry.com")) {
+                userManager.Create(new ApplicationUser {
+                    UserName = "moderator@coderfoundry.com",
+                    Email = "moderator@coderfoundry.com",
+                    FirstName = "Coder",
+                    LastName = "Foundry",
+                    DisplayName = "Coder Foundry",
+                    EmailConfirmed = true,
+                    IsLoggedIn = true,
+                    CanPost = true
+                },
+                    "Password-1");
             }
 
             var userId = userManager.FindByEmail("brandon@navicamls.net").Id;

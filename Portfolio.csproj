@@ -178,6 +178,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\BlogAccountViewModel.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BlogPost.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -754,6 +755,7 @@
     <Content Include="fonts\revicons1.woff" />
     <Content Include="fonts\revicons1.eot" />
     <Content Include="fonts\revicons1.ttf" />
+    <Content Include="connections.config" />
     <None Include="Properties\PublishProfiles\brandonpayne - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\brandonpayne - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -995,7 +997,9 @@
     <Content Include="Scripts\tinymce\tinymce.min.js" />
     <Content Include="Scripts\uglify.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -1056,6 +1060,7 @@
       <DependentUpon>plugin.min.js</DependentUpon>
     </Content>
     <Content Include="private.config" />
+    <Content Include="Views\Blog\AddComment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

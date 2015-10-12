@@ -37,7 +37,9 @@ namespace Portfolio.Controllers {
         // GET: Blog/Create
         [Authorize(Roles = "Admin")]
         public ActionResult Create() {
-            return View();
+            BlogPost BlogPost = new BlogPost();
+            BlogPost.IsPublished = true;
+            return View(BlogPost);
         }
 
         // POST: Blog/Create
@@ -158,6 +160,15 @@ namespace Portfolio.Controllers {
             db.Posts.Remove(blogPost);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult AddComment(Comment comments) {
+
+            //Save comment to database
+            //Comment comments = db.Posts.Add(comments);
+
+            return Details(comments.Slug);
         }
 
         protected override void Dispose(bool disposing) {
