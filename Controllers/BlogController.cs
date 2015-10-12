@@ -162,13 +162,11 @@ namespace Portfolio.Controllers {
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
-        public ActionResult AddComment(Comment comments) {
+        public ActionResult AddComment(Comment comment) {
 
             //Save comment to database
-            //Comment comments = db.Posts.Add(comments);
 
-            return Details(comments.Slug);
+            return Details(comment.Slug);
         }
 
         protected override void Dispose(bool disposing) {
