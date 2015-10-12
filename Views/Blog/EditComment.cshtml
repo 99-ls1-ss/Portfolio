@@ -1,0 +1,24 @@
+﻿@using Portfolio.Models
+@model Comment
+@{
+    ViewBag.Title = "Edit Comment";
+}
+
+    <div class="row">
+        <div class="post-comments">
+            <div class="col-md-12">
+                <form class="comment-form" role="form" method="post" action="@Url.Action("EditComment", "Blog")">
+                    <input type="hidden" name="PostId" value="@Model.Id" />
+                    <input type="hidden" name="slug" value="@Model.Slug" />
+                    <input type="hidden" name="Author" value="@Model.Author.DisplayName" />
+
+                    <h5 class="subpage-title">Add Comment</h5>
+
+                    <input type="text" name="Body" class="form-control" rows="5" />
+                    <input type="submit" class="btn btn-flat flat-color" value="Post Comment" />
+                </form>
+            </div>
+        </div>            
+    </div>
+
+

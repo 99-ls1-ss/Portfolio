@@ -189,3 +189,7 @@
 .post-meta {
     margin-top:10px;
 }
+
+.bottomLogin .hideBottom {
+    display:none;
+}

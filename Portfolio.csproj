@@ -1065,6 +1065,7 @@
     </Content>
     <Content Include="private.config" />
     <Content Include="Views\Blog\AddComment.cshtml" />
+    <Content Include="Views\Blog\EditComment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

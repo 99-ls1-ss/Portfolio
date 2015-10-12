@@ -175,10 +175,10 @@
 }
 
 .blogBody {
-    background-color:#fff;
+    /*background-color:#fff;*/
     min-height:58px;
     padding:6px 4px;
-    border:1px solid #e8e8e8;
+    /*border:1px solid #e8e8e8;*/
 }
 
 .post-thumb img {
@@ -192,4 +192,8 @@
 
 .bottomLogin .hideBottom {
     display:none;
+}
+
+.media-list {
+    margin-bottom: 1em;
 }

@@ -122,6 +122,7 @@ namespace Portfolio.Controllers {
 
             if (ModelState.IsValid) {
 
+                //The Posts refers to the Model IdentityModels - public DbSet<BlogPost> Posts { get; set; }
                 if(!db.Posts.Local.Any(p=>p.Id == blogPost.Id))
                     db.Posts.Attach(blogPost);
 
@@ -191,23 +192,28 @@ namespace Portfolio.Controllers {
 
         [HttpPost]
         public ActionResult AddComment(Comment newComment, string Slug) {
-
             if (ModelState.IsValid) {
                 newComment.Created = System.DateTimeOffset.Now;
                 newComment.AuthorId = User.Identity.GetUserId();
                 db.Comments.Add(newComment);
                 db.SaveChanges();
             }
-
-            //return Details(newComment.Slug);
             return RedirectToAction(Slug, "Post");
+        }
 
-            //BlogPost Comments = new BlogPost();
-            ////Save comment to database
-            //db.Posts.Add(Comments);
+        [HttpPost]
+        public ActionResult EditComment(Comment editComment, string Slug) {
 
-
-            //return Details(newComment.Slug);
+            if (ModelState.IsValid) {
+                // the Comments refers to the Model IdentityModels - public DbSet<Comment> Comments { get; set; }.
+                if (!db.Comments.Local.Any(c => c.Id == editComment.Id))
+                    db.Comments.Attach(editComment);
+                db.Entry(editComment).Property(p => p.Body).IsModified = true;
+                editComment.Updated = System.DateTimeOffset.Now;
+                editComment.UpdateReason = User.Identity.GetUserId();
+                db.SaveChanges();
+            }
+            return RedirectToAction(Slug, "Post");
         }
 
         protected override void Dispose(bool disposing) {
