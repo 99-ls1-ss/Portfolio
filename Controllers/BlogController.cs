@@ -9,6 +9,8 @@ using System.Web.Mvc;
 using Portfolio.Models;
 using MyPersonalPage.Models;
 using System.IO;
+using Microsoft.AspNet.Identity;
+using System.Data.Entity.Validation;
 
 namespace Portfolio.Controllers {
     public class BlogController : Controller {
@@ -46,8 +48,8 @@ namespace Portfolio.Controllers {
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        //[ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Created,Updated,Title,Slug,Body,MediaURL,IsPublished,IsLoggedIn,AccessLevel")] BlogPost blogPost, HttpPostedFileBase image) {
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "Id,Created,Updated,Title,Slug,Body,MediaURL,IsPublished,IsLoggedIn")] BlogPost blogPost, HttpPostedFileBase image) {
             if (image != null && image.ContentLength > 0) {
                 //Check the file name to make sure it's a image
                 var ext = Path.GetExtension(image.FileName).ToLower();
@@ -80,8 +82,9 @@ namespace Portfolio.Controllers {
 
                     //Save image
                     image.SaveAs(Path.Combine(absPath, image.FileName));
-                }               
-
+                }
+                blogPost.Created = DateTimeOffset.Now;
+                blogPost.Updated = null;
                 blogPost.Slug = Slug;
                 db.Posts.Add(blogPost);
                 db.SaveChanges();
@@ -107,8 +110,8 @@ namespace Portfolio.Controllers {
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        //[ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Created,Updated,Title,Slug,Body,MediaURL,IsPublished,IsLoggedIn,AccessLevel")] BlogPost blogPost, HttpPostedFileBase image) {
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(BlogPost blogPost, HttpPostedFileBase image) {
             if (image != null && image.ContentLength > 0) {
                 //Check the file name to make sure it's a image
                 var ext = Path.GetExtension(image.FileName).ToLower();
@@ -118,6 +121,9 @@ namespace Portfolio.Controllers {
             }
 
             if (ModelState.IsValid) {
+
+                if(!db.Posts.Local.Any(p=>p.Id == blogPost.Id))
+                    db.Posts.Attach(blogPost);
 
                 if (image != null) {
                     //relative server path
@@ -131,9 +137,28 @@ namespace Portfolio.Controllers {
 
                     //Save image
                     image.SaveAs(Path.Combine(absPath, image.FileName));
+
+                    db.Entry(blogPost).Property(p => p.MediaURL).IsModified = true;
                 }
 
-                db.Entry(blogPost).State = EntityState.Modified;
+
+                blogPost.Updated = DateTimeOffset.Now;
+                db.Entry(blogPost).Property(p => p.Updated).IsModified = true;
+                db.Entry(blogPost).Property(p => p.Title).IsModified = true;
+                db.Entry(blogPost).Property(p => p.Body).IsModified = true;
+
+                if (db.Entry(blogPost).Property(p => p.Title).IsModified == true) {
+
+                    var Slug = StringUtilities.URLFriendly(blogPost.Title);
+
+                    if (String.IsNullOrWhiteSpace(Slug)) {
+                        ModelState.AddModelError("Title", "Invalid Title.");
+                        return View(blogPost);
+                    }                
+                    
+                }
+                db.Entry(blogPost).Property(p => p.Slug).IsModified = true;
+                db.Entry(blogPost).Property(p => p.IsPublished).IsModified = true;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -155,8 +180,9 @@ namespace Portfolio.Controllers {
 
         // POST: Blog/Delete/
         [HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id) {
+
             BlogPost blogPost = db.Posts.Find(id);
             db.Posts.Remove(blogPost);
             db.SaveChanges();
@@ -164,14 +190,24 @@ namespace Portfolio.Controllers {
         }
 
         [HttpPost]
-        public ActionResult AddComment(Comment newComment) {
+        public ActionResult AddComment(Comment newComment, string Slug) {
 
-            BlogPost Comments = new BlogPost();
-            //Save comment to database
-            db.Posts.Add(Comments);
+            if (ModelState.IsValid) {
+                newComment.Created = System.DateTimeOffset.Now;
+                newComment.AuthorId = User.Identity.GetUserId();
+                db.Comments.Add(newComment);
+                db.SaveChanges();
+            }
+
+            //return Details(newComment.Slug);
+            return RedirectToAction(Slug, "Post");
+
+            //BlogPost Comments = new BlogPost();
+            ////Save comment to database
+            //db.Posts.Add(Comments);
 
 
-            return Details(newComment.Slug);
+            //return Details(newComment.Slug);
         }
 
         protected override void Dispose(bool disposing) {

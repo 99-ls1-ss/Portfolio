@@ -110,3 +110,16 @@ $('body').on('hidden.bs.modal', '.modal', function (event) {
         $(HTMLDivElement).text('')
     })
 });
+
+$(document).ready(function () {
+    $('.jsBlogBody').dotdotdot({
+        /*	How to cut off the text/html: 'word'/'letter'/'children' */
+        wrap: 'word',
+        /*	Wrap-option fallback to 'letter' for long words */
+        fallbackToLetter: true,
+        ellipsis: '... ',
+        //after: "a.readmore",
+        height: 50
+
+    });
+});

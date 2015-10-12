@@ -4,16 +4,19 @@
 }
 <form action="@Url.Action("Create")" method="post" enctype="multipart/form-data">
 
-    @Html.AntiForgeryToken()
+    @*@Html.AntiForgeryToken()*@
 
     <section id="blog-posts" class="section colored-wrapper blogCreate">
         <div class="container">
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-7">
                     <h2>@ViewBag.Title</h2>
                     <h3>@ViewBag.Message</h3>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-5 blogAccount">
+                    @Html.Partial("_LoginPartial")
+                    <br />
+                    <br />
                     <a href="@Url.Action("Index", "Blog")" class="pull-right">Back to Blog Home</a>
                 </div>
             </div>
@@ -64,7 +67,9 @@
                         @Html.LabelFor(model => model.IsPublished, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
                             <div class="checkbox">
-                                @Html.EditorFor(model => model.IsPublished)
+                                @*@Html.EditorFor(model => model.IsPublished, new { @checked = "checked"})*@
+                                @Html.CheckBoxFor(model=>model.IsPublished,true)
+                               
                                 @Html.ValidationMessageFor(model => model.IsPublished, "", new { @class = "text-danger" })
                             </div>
                         </div>

@@ -1,17 +1,22 @@
-﻿@model Portfolio.Models.BlogPost
+﻿@using Portfolio.Models
+@model BlogPost
 @{
     ViewBag.Title = "Details";
+
 }
 
-
+@*@Html.AntiForgeryToken()*@
 <section id="blog-posts" class="section colored-wrapper">
     <div class="container">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-7">
                 <h2>@ViewBag.Title</h2>
                 <h3>@ViewBag.Message</h3>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-5 blogAccount">
+                @Html.Partial("_LoginPartial")
+                <br />
+                <br />
                 <a href="@Url.Action("Index", "Blog")" class="pull-right">Back to Blog Home</a>
             </div>
         </div>
@@ -25,23 +30,23 @@
             </div>
         </div>
         <div class="post-meta">
-            <ul class="meta-list">
-                <li>
+            <ul class="meta-list row">
+                <li class="col-md-8">
+                    @if (User.IsInRole("Admin") || User.IsInRole("Moderator")) {
+                        <span><a href="@Url.Action("Edit", "Blog", new { id =  Model.Id })" class="editDeleteLink">Edit Post</a></span>
+                        <span><a href="@Url.Action("Delete", "Blog", new { id = Model.Id })" class="editDeleteLink">Delete Post</a></span>
+                    }
                     <span>Posted on</span>
                     <span class="black">@Html.DisplayFor(model => model.Created)</span>
                 </li>
-                <li>
+                <li class="col-md-4 text-right">
                     <span>By Brandon Payne</span>
                 </li>
-                @*<li>
-                        <span class="black">Put count of views here if possible</span>
-                    </li>*@
             </ul>
         </div>
         <div class="post-comments">
             <div class="col-md-12">
-                <h5 class="subpage-title"><span style="font-size:.7em;">(Add Comment Count)</span> Comments</h5>
-
+                <h5 class="subpage-title"><span style="font-size:.7em;">@*(Add Comment Count)*@</span> Comments</h5>
                 @foreach (var comment in Model.Comments) {
                     <ul class="media-list">
                         <li class="media">
@@ -61,23 +66,15 @@
                 }
 
             </div>
-            <form class="comment-form">
-                <h5 class="subpage-title">Add Comment</h5>
-                <div class="row">
-                    <div class="col-md-4">
-                        <input class="form-control" placeholder="Name (required)" type="text">
-                    </div>
-                    <div class="col-md-4">
-                        <input class="form-control" placeholder="Email (required)" type="text">
-                    </div>
-                    <div class="col-md-4">
-                        <input class="form-control" placeholder="Website" type="text">
-                    </div>
-                </div>
-                <!-- row-fluid -->
-                <textarea class="form-control" rows="3"></textarea>
-                <button class="btn btn-flat flat-color">Post Comment</button>
-            </form>
+
+            @{
+                Comment newComment = new Comment() {
+                    PostId = Model.Id,
+                    Slug = Model.Slug
+                };
+                Html.RenderPartial("AddComment", newComment);
+            }
+
         </div>
     </div>
 </section>

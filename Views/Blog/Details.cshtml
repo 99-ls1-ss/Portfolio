@@ -44,37 +44,53 @@
                 </li>
             </ul>
         </div>
-        <div class="post-comments">
-            <div class="col-md-12">
-                <h5 class="subpage-title"><span style="font-size:.7em;">@*(Add Comment Count)*@</span> Comments</h5>
-                @foreach (var comment in Model.Comments) {
-                    <ul class="media-list">
-                        <li class="media">
-                            <a class="pull-left" href="#">
-                                <img class="media-object" width="64" height="64" src="assets/img/users/photo (4).jpg" alt="User Image">
-                            </a>
-                            <div class="media-body">
-                                <h5 class="media-heading">
-                                    <a href="#">@comment.Author</a>
-                                </h5>
-                                <span class="comment-date">@comment.Created</span>
-                                <a href="" class="comment-reply pull-right">Reply</a>
-                                @comment.Body
-                            </div>
-                        </li>
-                    </ul>
-                }
+        <div class="row">
+            <div class="post-comments">
+                <div class="col-md-12">
+                    <form class="comment-form" role="form" method="post" action="@Url.Action("AddComment", "Blog")">
+                        <input type="hidden" name="PostId" value="@Model.Id" />
+                        <input type="hidden" name="slug" value="@Model.Slug" />
+                        <input type="hidden" name="Author" value="@Model.DisplayName" />
 
+                        <h5 class="subpage-title">Add Comment</h5>
+
+                        <input type="text" name="Body" class="form-control" rows="5" />
+                        <input type="submit" class="btn btn-flat flat-color" value="Post Comment" />
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h5 class="subpage-title"><span style="font-size:.7em;">@*(Add Comment Count)*@</span> Comments</h5>
+                    @foreach (var comment in Model.Comments) {
+                        <ul class="media-list">
+                            <li class="media">
+                                <div class="media-body">
+                                    <h5 class="media-heading">
+                                        @*@Html.DisplayFor(model => model.DisplayName)
+                                        @Html.DisplayTextFor(model => model.DisplayName)*@
+                                    </h5>
+                                    <span class="comment-date">@comment.Created</span>
+                                    @*<a href="" class="comment-reply pull-right">Reply</a>*@
+                                    @comment.Body
+                                </div>
+                            </li>
+                        </ul>
+                    }
+
+                </div>
             </div>
 
-            @{
+
+
+                @*@{
                 Comment newComment = new Comment() {
                     PostId = Model.Id,
                     Slug = Model.Slug
                 };
                 Html.RenderPartial("AddComment", newComment);
-            }
+            }*@
 
-        </div>
+            </div>
     </div>
 </section>

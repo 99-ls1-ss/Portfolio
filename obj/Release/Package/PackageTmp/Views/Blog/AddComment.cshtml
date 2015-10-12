@@ -1,0 +1,24 @@
+﻿@using Portfolio.Models
+@model Comment
+
+<form class="comment-form" method="post" action="@Url.Action("AddComment")">
+    @Html.HiddenFor(m => m.PostId)
+    @Html.HiddenFor(m => m.Slug)
+
+    <h5 class="subpage-title">Add Comment</h5>
+    <div class="row">
+        <div class="col-md-6">
+            @Html.TextBoxFor(m => m.Author, new { @class = "form-control", @placeholder = "Name (required)" })
+            @*<input class="form-control" name="" placeholder="Name (required)" type="text">*@
+        </div>
+        <div class="col-md-6">
+            @Html.TextBoxFor(m => m.AuthorId, new { @class = "form-control", @placeholder = "Name (required)" })
+            @*<input class="form-control" name="" placeholder="Email (required)" type="text">*@
+        </div>
+        @*<div class="col-md-4">
+            <input class="form-control" name="" placeholder="Website" type="text">
+        </div>*@
+    </div>
+    @Html.TextAreaFor(m => m.Body, new { @class = "form-control", rows = "3"})
+    <input type="submit" class="btn btn-flat flat-color" value="Post Comment" />
+</form>

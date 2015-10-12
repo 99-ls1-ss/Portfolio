@@ -998,6 +998,9 @@
     <Content Include="Scripts\tinymce\tinymce.min.js" />
     <Content Include="Scripts\uglify.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Uploads\2015-chevrolet-silverado-2500-hd-high-country-03.jpg" />
+    <Content Include="Uploads\2015_gmc_sierra_sierra_2500hd_denali.png" />
+    <Content Include="Uploads\blog_logo.png" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1065,7 +1068,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Uploads\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

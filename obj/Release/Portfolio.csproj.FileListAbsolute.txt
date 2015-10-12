@@ -108,3 +108,5 @@ C:\Users\Brandon\Documents\School Source\Portfolio\Portfolio\bin\Microsoft.Owin.
 C:\Users\Brandon\Documents\School Source\Portfolio\Portfolio\obj\Release\Portfolio.csprojResolveAssemblyReference.cache
 C:\Users\Brandon\Documents\School Source\Portfolio\Portfolio\obj\Release\Portfolio.dll
 C:\Users\Brandon\Documents\School Source\Portfolio\Portfolio\obj\Release\Portfolio.pdb
+C:\Users\Brandon\Documents\School Source\Portfolio\Portfolio\bin\SendGrid.SmtpApi.dll
+C:\Users\Brandon\Documents\School Source\Portfolio\Portfolio\bin\SendGridMail.dll
