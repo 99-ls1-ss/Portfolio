@@ -20,12 +20,26 @@ namespace Portfolio.Controllers {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Blog
-        public ActionResult Index(int? page) {
+        public ActionResult Index(int? page, string searchString) {
 
             int pageSize = 3; // Displays three blog posts per page
             int pageNumber = (page ?? 1);
 
-            return View(db.Posts.OrderByDescending(m => m.Created).ToPagedList(pageNumber,pageSize));
+            var queryPost = db.Posts.AsQueryable();
+
+            if (searchString != null && searchString != "") {                
+
+                string[] searchArray = searchString.Split(' ');
+
+                queryPost= searchArray.SelectMany(r => db.Posts.Where(q => (q.Body.Contains(r)) ||
+                            (q.Title.Contains(r)) ||
+                            (q.Slug.Contains(r)) ||
+                            (q.Comments).Any(c => (c.Body).Contains(r)))).AsQueryable();
+
+                ViewBag.Query = searchString;            
+            }
+
+            return View(queryPost.OrderByDescending(m => m.Created).ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Blog/Details/
@@ -149,7 +163,6 @@ namespace Portfolio.Controllers {
 
                     db.Entry(blogPost).Property(p => p.MediaURL).IsModified = true;
                 }
-
 
                 blogPost.Updated = DateTimeOffset.Now;
                 db.Entry(blogPost).Property(p => p.Updated).IsModified = true;

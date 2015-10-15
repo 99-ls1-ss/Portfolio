@@ -571,6 +571,8 @@
     <Content Include="Content\Images\boxed_bgtile.png" />
     <Content Include="Content\Images\buffaloOwl.jpg" />
     <Content Include="Content\Images\buffaloTiger.jpg" />
+    <Content Include="Content\Images\search-icon-md.png" />
+    <Content Include="Content\Images\search-icon-white.png" />
     <Content Include="Content\Images\slides\brick-background.png" />
     <Content Include="Content\Images\slides\builtForYou.jpg" />
     <Content Include="Content\Images\bullet.png" />
@@ -1075,6 +1077,7 @@
     <Content Include="private.config" />
     <Content Include="Views\Blog\AddComment.cshtml" />
     <Content Include="Views\Blog\EditComment.cshtml" />
+    <Content Include="Views\Shared\_Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -231,3 +231,48 @@ input.btn{
     background-color: #fff;
     padding: .25em;
 }
+
+.blogSearchButton {
+    background-image: url('Images/search-icon-white.png');
+    background-size: 80% 80%;
+    background-repeat: no-repeat;
+    background-position: 2px;
+    height: 33px;
+    width: 30px;
+    border-bottom-right-radius:.5em;
+    border-top-right-radius:.5em;
+    display:inline-block;
+    margin-left:0;
+    padding-left:0;
+    vertical-align:middle;
+    background-color: #34495E;
+    border-color:#34495E;
+}
+
+.blogSearchButton:hover {
+    background-color: transparent;
+    background-image: url('Images/search-icon-md.png');
+    background-size: 80% 80%;
+    background-repeat: no-repeat;
+    background-position: 2px;
+}
+
+.form-control.blogSearchBox{
+    display:inline-block;
+    margin-right:-3px;
+    padding-right:0;
+    width:224px;
+    margin-bottom: 0;
+}
+
+.comment-form.blogSearch {
+    padding:26px 0 0 0;
+    float:right;
+}
+
+.formattedContent {
+    white-space:pre;
+    padding: .45em .25em;
+    border-top: 1px solid #efefef;
+    border-bottom: 1px solid #efefef;
+}

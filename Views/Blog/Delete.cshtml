@@ -1,24 +1,9 @@
 ﻿@model Portfolio.Models.BlogPost
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Delete Blog";
+    ViewBag.Message = Model.Title;
 }
 
-@*<h2>Delete</h2>
-
-<section>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <form action="@Url.Action("Delete","Blog")" method="post">
-                    Title: <input type="text" name="Title" />
-                    Body: <input type="text" name="Body" />
-                    <input type="radio" value="" />
-                    <button type="submit">Delete Blog</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</section>*@
 <section id="blog-posts" class="section colored-wrapper">
     <div class="container">
 
@@ -43,13 +28,15 @@
                         @Html.HiddenFor(model => model.Id)
 
                         <div class="post-content">
-                            <h4>@Html.DisplayFor(model => model.Title)</h4>
+                            @*<h4>@Html.DisplayFor(model => model.Title)</h4>*@
                             <div class="blogBody">@Html.Raw(Model.Body)</div>
-                            <div class="media-body">
+                            
                                 @if (Model.MediaURL != null) {
-                                    <img src="@Model.MediaURL" class="img-responsive" alt="@Model.Title" />
+                                    <div class="media-body">
+                                        <img src="@Model.MediaURL" class="img-responsive" alt="@Model.Title" />
+                                    </div>
                                 }
-                            </div>
+                                    
                         </div>
                     </div>
                 </div>
