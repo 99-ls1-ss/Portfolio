@@ -11,5 +11,10 @@ namespace Portfolio.Controllers {
         public ActionResult Index() {
             return View();
         }
+
+        public ActionResult SendContact() {
+
+            return View("Index");
+        }
     }
 }
