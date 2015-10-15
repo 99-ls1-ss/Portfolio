@@ -4,13 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Portfolio.Controllers
-{
-    public class AboutController : Controller
-    {
+namespace Portfolio.Controllers {
+    [RequireHttps]
+    public class AboutController : Controller {
         // GET: About
-        public ActionResult Index()
-        {
+        public ActionResult Index() {
             return View();
         }
     }

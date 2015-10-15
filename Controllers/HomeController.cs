@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 
 namespace Portfolio.Controllers {
+    [RequireHttps]
     public class HomeController : Controller {
         public ActionResult Index() {
             return View();

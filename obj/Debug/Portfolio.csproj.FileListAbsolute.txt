@@ -110,3 +110,7 @@ C:\Users\Brandon\Documents\School Source\Portfolio\Portfolio\obj\Debug\Portfolio
 C:\Users\Brandon\Documents\School Source\Portfolio\Portfolio\obj\Debug\Portfolio.pdb
 C:\Users\Brandon\Documents\School Source\Portfolio\Portfolio\bin\SendGrid.SmtpApi.dll
 C:\Users\Brandon\Documents\School Source\Portfolio\Portfolio\bin\SendGridMail.dll
+C:\Users\Brandon\Documents\School Source\Portfolio\Portfolio\bin\PagedList.dll
+C:\Users\Brandon\Documents\School Source\Portfolio\Portfolio\bin\PagedList.Mvc.dll
+C:\Users\Brandon\Documents\School Source\Portfolio\Portfolio\bin\PagedList.xml
+C:\Users\Brandon\Documents\School Source\Portfolio\Portfolio\bin\PagedList.Mvc.xml

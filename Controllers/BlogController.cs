@@ -11,14 +11,21 @@ using MyPersonalPage.Models;
 using System.IO;
 using Microsoft.AspNet.Identity;
 using System.Data.Entity.Validation;
+using PagedList;
+using PagedList.Mvc;
 
 namespace Portfolio.Controllers {
+    [RequireHttps]
     public class BlogController : Controller {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Blog
-        public ActionResult Index() {
-            return View(db.Posts.ToList());
+        public ActionResult Index(int? page) {
+
+            int pageSize = 3; // Displays three blog posts per page
+            int pageNumber = (page ?? 1);
+
+            return View(db.Posts.OrderByDescending(m => m.Created).ToPagedList(pageNumber,pageSize));
         }
 
         // GET: Blog/Details/
@@ -28,8 +35,9 @@ namespace Portfolio.Controllers {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            BlogPost blogPost = db.Posts.FirstOrDefault(p => p.Slug == Slug);
-
+            BlogPost blogPost = db.Posts.Include("Comments").FirstOrDefault(p => p.Slug == Slug);            
+            ViewBag.CurrentUser = db.Users.Find(User.Identity.GetUserId());
+            
             if (blogPost == null) {
                 return HttpNotFound();
             }
@@ -193,13 +201,17 @@ namespace Portfolio.Controllers {
         [HttpPost]
         public ActionResult AddComment(Comment newComment, string Slug) {
             if (ModelState.IsValid) {
-                newComment.Created = System.DateTimeOffset.Now;
+                newComment.CreatedDate = System.DateTimeOffset.Now;
+                newComment.IsRemoved = false;
+                newComment.RemovedDate = null;
+                newComment.RemovedBy = "";
                 newComment.AuthorId = User.Identity.GetUserId();
                 db.Comments.Add(newComment);
                 db.SaveChanges();
             }
             return RedirectToAction(Slug, "Post");
         }
+
 
         [HttpPost]
         public ActionResult EditComment(Comment editComment, string Slug) {
@@ -208,9 +220,29 @@ namespace Portfolio.Controllers {
                 // the Comments refers to the Model IdentityModels - public DbSet<Comment> Comments { get; set; }.
                 if (!db.Comments.Local.Any(c => c.Id == editComment.Id))
                     db.Comments.Attach(editComment);
+
                 db.Entry(editComment).Property(p => p.Body).IsModified = true;
-                editComment.Updated = System.DateTimeOffset.Now;
-                editComment.UpdateReason = User.Identity.GetUserId();
+                db.Entry(editComment).Property(p => p.UpdateReason).IsModified = true;
+                db.Entry(editComment).Property(p => p.UpdatedBy).IsModified = true;
+                editComment.UpdatedDate = System.DateTimeOffset.Now;
+                db.SaveChanges();
+            }
+            return RedirectToAction(Slug, "Post");
+        }
+
+        [HttpPost]
+        public ActionResult DeleteComment(Comment deleteComment, string Slug) {
+
+            if (ModelState.IsValid) {
+                // the Comments refers to the Model IdentityModels - public DbSet<Comment> Comments { get; set; }.
+                if (!db.Comments.Local.Any(c => c.Id == deleteComment.Id))
+                    db.Comments.Attach(deleteComment);
+                
+                db.Entry(deleteComment).Property(d => d.Body).IsModified = true;                
+                db.Entry(deleteComment).Property(d => d.RemoveReason).IsModified = true;
+                db.Entry(deleteComment).Property(d => d.RemovedBy).IsModified = true;
+                deleteComment.RemovedDate = System.DateTimeOffset.Now;
+                //deleteComment.IsRemoved = true;
                 db.SaveChanges();
             }
             return RedirectToAction(Slug, "Post");

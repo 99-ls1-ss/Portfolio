@@ -14,10 +14,14 @@ namespace Portfolio.Models {
         [Required]
         [AllowHtml]
         public string Body { get; set; }
-        public DateTimeOffset Created { get; set; }
-        public Nullable<DateTimeOffset> Updated { get; set; }
+        public DateTimeOffset CreatedDate { get; set; }
+        public Nullable<DateTimeOffset> RemovedDate { get; set; }
+        public Nullable<DateTimeOffset> UpdatedDate { get; set; }
         public string UpdateReason { get; set; }
-        public bool IsApproved { get; set; }
+        public string RemoveReason { get; set; }
+        public bool IsRemoved { get; set; }
+        public string RemovedBy { get; set; }
+        public string UpdatedBy { get; set; }
         public string Slug { get; set; }
 
         public virtual ApplicationUser Author { get; set; }

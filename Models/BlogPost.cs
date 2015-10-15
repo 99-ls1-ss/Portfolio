@@ -31,7 +31,6 @@ namespace Portfolio.Models {
         public string MediaURL { get; set; }
         [Display(Name = "Make Public")]
         public bool IsPublished { get; set; }
-        public string DisplayName { get; set; }
 
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ApplicationUser Author { get; set; }
