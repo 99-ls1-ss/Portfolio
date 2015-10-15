@@ -67,7 +67,7 @@
                                 <div class="post-meta">
                                     <ul class="meta-list row">
                                         <li class="col-md-12"><span>Posted on</span><span class="black">@item.Created</span></li>
-                                        @if (User.IsInRole("Admin") || User.IsInRole("Moderator")) {
+                                        @if (User.IsInRole("Admin")) {
                                                 <li class="col-md-3"><a href="@Url.Action("Edit", "Blog", new { id = item.Id })" class="editDeleteLink">Edit Post</a></li>
                                                 <li class="col-md-4"><a href="@Url.Action("Delete", "Blog", new { id = item.Id })" class="editDeleteLink">Delete Post</a></li>
                                                 <li class="col-xs-5"><a class="read-more pull-right" href="@Url.Action("Details", new { Slug = item.Slug })">Read More <i class="icon-long-arrow-right pull-right"></i></a></li>
