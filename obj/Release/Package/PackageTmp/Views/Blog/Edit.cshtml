@@ -57,8 +57,14 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.MediaURL, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
-                                @Html.HiddenFor(model => model.MediaURL, new { htmlAttributes = new { @class = "form-control", id = "fileUpload", type = "file" } })
-                                @Html.ValidationMessageFor(model => model.MediaURL, "", new { @class = "text-danger" })
+                                @if (Model.MediaURL != null) {
+                                    <label>Current Media Name: </label> @Html.DisplayFor(model => model.MediaURL)
+                                } 
+                                    @Html.HiddenFor(model => model.MediaURL, new { htmlAttributes = new { @class = "form-control", id = "fileUpload", type = "file" } })
+                                    @Html.ValidationMessageFor(model => model.MediaURL, "", new { @class = "text-danger" })
+                                
+                                @*@Html.HiddenFor(model => model.MediaURL, new { htmlAttributes = new { @class = "form-control", id = "fileUpload", type = "file" } })
+                                @Html.ValidationMessageFor(model => model.MediaURL, "", new { @class = "text-danger" })*@
                                 <input name="image" type="file" class="form-control" id="fileUpload" />
                             </div>
                         </div>
@@ -93,4 +99,7 @@
         </form>
 
     </div>
+
+
+
 </section>

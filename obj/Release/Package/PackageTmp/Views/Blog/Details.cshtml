@@ -2,7 +2,6 @@
 @model BlogPost
 @{
     ViewBag.Title = "Details";
-
 }
 
 @*@Html.AntiForgeryToken()*@
@@ -10,8 +9,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-7">
-                <h2>@ViewBag.Title</h2>
-                <h3>@ViewBag.Message</h3>
+                @*<h2>@ViewBag.Title</h2>
+                    <h3>@ViewBag.Message</h3>*@
             </div>
             <div class="col-md-5 blogAccount">
                 @Html.Partial("_LoginPartial")
@@ -44,53 +43,189 @@
                 </li>
             </ul>
         </div>
+
         <div class="row">
-            <div class="post-comments">
-                <div class="col-md-12">
-                    <form class="comment-form" role="form" method="post" action="@Url.Action("AddComment", "Blog")">
-                        <input type="hidden" name="PostId" value="@Model.Id" />
-                        <input type="hidden" name="slug" value="@Model.Slug" />
-                        <input type="hidden" name="Author" value="@Model.DisplayName" />
+            @if (Request.IsAuthenticated) {
+                <div class="post-comments">
+                    <div class="col-md-12">
+                        <form class="comment-form" role="form" method="post" action="@Url.Action("AddComment", "Blog")">
+                            <input type="hidden" name="PostId" value="@Model.Id" />
+                            <input type="hidden" name="slug" value="@Model.Slug" />
+                            <input type="hidden" name="Author" value="" />
 
-                        <h5 class="subpage-title">Add Comment</h5>
+                            <h5 class="subpage-title">Add Comment</h5>
 
-                        <input type="text" name="Body" class="form-control" rows="5" />
-                        <input type="submit" class="btn btn-flat flat-color" value="Post Comment" />
-                    </form>
+                            <input type="text" name="Body" class="form-control" rows="5" />
+                            <input type="submit" class="btn btn-flat flat-color" value="Post Comment" />
+                        </form>
+                    </div>
+                </div>
+            }
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h5 class="subpage-title"><span style="font-size:.7em;">@*(Add Comment Count)*@</span> Comments</h5>
+                        @foreach (var comment in Model.Comments) {
+                            if ((User.IsInRole("Admin") || User.IsInRole("Moderator"))) {
+                                <ul class="media-list">
+                                    <li class="media">
+                                        <div class="media-body">
+                                            <h5 class="media-heading">
+                                                @Html.DisplayTextFor(model => comment.Author.DisplayName)
+                                                <span class="subText">Created: @comment.CreatedDate.ToString("g") </span>
+                                                <span>
+                                                    <a href="" class="jsCommentClass comment-reply pull-right"
+                                                       data-toggle="modal"
+                                                       data-target="#editComment"
+                                                       data-id="@comment.Id"
+                                                       data-body="@comment.Body"
+                                                       data-updateddate="@comment.UpdatedDate"
+                                                       data-updatedby="@comment.Author.DisplayName"
+                                                       data-updatedreason="@comment.UpdateReason">Edit Comment</a>
+
+                                                    <a href="" class="jsCommentClass comment-reply pull-right"
+                                                       data-toggle="modal"
+                                                       data-target="#deleteComment"
+                                                       data-id="@comment.Id"
+                                                       data-body="@comment.Body"
+                                                       data-removeddate="@comment.RemovedDate"
+                                                       data-removedby="@comment.Author.DisplayName"
+                                                       data-removereason="@comment.RemoveReason">Remove Comment</a>
+                                                </span>
+                                            </h5>
+                                            @if (comment.IsRemoved != true) {
+                                                <div>
+                                                    @comment.Body
+                                                </div>
+                                                if (comment.UpdatedBy != null || comment.UpdatedDate != null) {
+                                                    <h5 class="media-heading">
+                                                        <span class="subText pull-right hiddenMessage">Updated By: @comment.UpdatedBy Date: @comment.UpdatedDate.Value.ToString("g") </span>
+                                                    </h5>
+                                                }
+                                            } else {
+                                                <div class="commentIsRemoved">
+                                                    @comment.Body
+                                                </div>
+                                                if (comment.RemovedBy != null || comment.RemovedDate != null) {
+                                                    <h5 class="media-heading">
+                                                        <span class="subText pull-right removedMessage">Removed By: @comment.RemovedBy Date: @comment.RemovedDate.Value.ToString("g") </span>
+                                                    </h5>
+                                                }
+                                            }
+                                        </div>
+                                    </li>
+                                </ul>
+                            } else {
+                                if (comment.IsRemoved != true) { 
+                                <ul class="media-list">
+                                    <li class="media">
+                                        <div class="media-body">
+                                            <h5 class="media-heading">
+                                                @Html.DisplayTextFor(model => comment.Author.DisplayName)
+                                                <span class="subText">Created: @comment.CreatedDate.ToString("g") </span>                                                
+                                            </h5>
+                                            @if (comment.IsRemoved != true) {
+                                                <div>
+                                                    @comment.Body
+                                                </div>                                                
+                                            } 
+                                        </div>
+                                    </li>
+                                </ul>
+                                }
+                            }
+                        }
+
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <h5 class="subpage-title"><span style="font-size:.7em;">@*(Add Comment Count)*@</span> Comments</h5>
-                    @foreach (var comment in Model.Comments) {
-                        <ul class="media-list">
-                            <li class="media">
-                                <div class="media-body">
-                                    <h5 class="media-heading">
-                                        @*@Html.DisplayFor(model => model.DisplayName)
-                                        @Html.DisplayTextFor(model => model.DisplayName)*@
-                                    </h5>
-                                    <span class="comment-date">@comment.Created</span>
-                                    @*<a href="" class="comment-reply pull-right">Reply</a>*@
-                                    @comment.Body
-                                </div>
-                            </li>
-                        </ul>
-                    }
-
-                </div>
-            </div>
-
-
-
-                @*@{
-                Comment newComment = new Comment() {
-                    PostId = Model.Id,
-                    Slug = Model.Slug
-                };
-                Html.RenderPartial("AddComment", newComment);
-            }*@
-
-            </div>
+        </div>
     </div>
 </section>
+
+
+
+<div id="editComment" class="modal fade" role="dialog">
+    <div class="modal-dialog numbersGame">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="post-comments">
+                            <div class="col-md-12">
+                                <form class="comment-form" role="form" method="post" action="@Url.Action("EditComment", "Blog")">
+                                    <input type="hidden" name="PostId" value="@Model.Id" />
+                                    <input type="hidden" name="slug" value="@Model.Slug" />
+                                    <input type="hidden" id="commentUpdateId" name="Id" value="" />
+                                    <input type="hidden" id="commentUpdatedById" name="UpdatedBy" value="" />
+
+                                    <h5 class="subpage-title">Edit Comment</h5>
+                                    <label>Comment Body: </label>
+                                    <input type="text" id="commentUpdateBodyId" class="form-control" name="Body" value="" rows="5" />
+                                    <label>Reason for updating: </label>
+                                    <input type="text" id="commentUpdatedReasonId" class="form-control" name="UpdateReason" value="" rows="5" />
+
+                                    <input type="submit" class="btn btn-flat flat-color" value="Edit Comment" />
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="deleteComment" class="modal fade" role="dialog">
+    <div class="modal-dialog numbersGame">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="post-comments">
+                            <div class="col-md-12">
+                                <form class="comment-form" role="form" method="post" action="@Url.Action("DeleteComment", "Blog")">
+                                    <input type="hidden" name="PostId" value="@Model.Id" />
+                                    <input type="hidden" name="slug" value="@Model.Slug" />
+                                    <input type="hidden" id="commentRemoveId" name="Id" value="" />
+                                    <input type="hidden" id="commentRemovedById" name="RemovedBy" value="" />
+                                    <input type="hidden" name="IsRemoved" value="true" />
+
+                                    <h5 class="subpage-title">Hide Comment</h5>
+                                    <label>Comment Body: </label>
+                                    <input type="text" id="commentRemoveBodyId" class="form-control" name="Body" value="" rows="5" />
+                                    <label>Reason for hiding Comment: </label>
+                                    <input type="text" id="commentRemoveReasonId" class="form-control" name="RemoveReason" value="" rows="5" />
+                                    <input type="submit" class="btn btn-flat flat-color" value="Hide Comment" />
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        //$(document).ready(function () {
+        $('.jsCommentClass').click(function () {
+            //Global comment variables
+            $('#commentUpdateId').val($(this).attr('data-id'));
+            $('#commentUpdateBodyId').val($(this).attr('data-body'));
+            $('#commentRemoveId').val($(this).attr('data-id'));
+            $('#commentRemoveBodyId').val($(this).attr('data-body'));
+            $('#commentRemovedById').val($(this).attr('data-removedby'));
+            $('#commentRemoveReasonId').val($(this).attr('data-removereason'));
+
+            //Updated variables
+            $('#commentUpdatedById').val($(this).attr('data-updatedby'));
+            $('#commentUpdatedDateId').val($(this).attr('data-updateddate'));
+            $('#commentUpdatedReasonId').val($(this).attr('data-updatedreason'));
+
+        });
+        //});
+    </script>
+}

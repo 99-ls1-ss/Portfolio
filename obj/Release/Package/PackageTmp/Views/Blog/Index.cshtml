@@ -1,9 +1,13 @@
-﻿@model IEnumerable<Portfolio.Models.BlogPost>
-@using Microsoft.AspNet.Identity
+﻿@model IPagedList<Portfolio.Models.BlogPost>
+@using Microsoft.AspNet.Identity;
+@using PagedList;
+@using PagedList.Mvc;
 
 @{
     ViewBag.Title = "My Blog";
 }
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 <section id="blog-posts" class="section colored-wrapper">
     <div class="container">
@@ -31,7 +35,7 @@
                     }
                 </div>
             </div>
-            <div class="row test">
+            <div class="row">
                 @foreach (var item in Model) {
                     if (item.IsPublished || User.IsInRole("Admin") || User.IsInRole("Moderator")) {
                         <div class="col-xs-12 col-sm-6 col-md-4">
@@ -75,20 +79,17 @@
                         </div>
                     }
                 }
-            </div>
 
-            <!-- /.row -->
+            </div>
             <div class="row">
-                <div class="container">
-                    <div class="col-xs-7"></div>
-                    <div class="col-xs-5 blogAccount bottomLogin">
-                        @Html.Partial("_LoginPartial")
-                    </div>
+                <div class="col-md-offset-7 col-md-5">
+                    <div class="pull-right">Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount </div>
+                    <div class="pull-right"> @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))</div>
                 </div>
             </div>
         </div>
-    <!-- /.wrapper-2 -->
+        <!-- /.wrapper-2 -->
     </div>
-<!-- /.container -->
+    <!-- /.container -->
 </section>
 
