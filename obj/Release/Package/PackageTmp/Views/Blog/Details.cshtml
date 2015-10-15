@@ -1,7 +1,8 @@
 ﻿@using Portfolio.Models
 @model BlogPost
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Brandon's Blog";
+    ViewBag.Message = Model.Title;
 }
 
 @*@Html.AntiForgeryToken()*@
@@ -9,8 +10,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-7">
-                @*<h2>@ViewBag.Title</h2>
-                    <h3>@ViewBag.Message</h3>*@
+                <h2>@ViewBag.Title</h2>
+                <h3>@ViewBag.Message</h3>
             </div>
             <div class="col-md-5 blogAccount">
                 @Html.Partial("_LoginPartial")
@@ -20,20 +21,23 @@
             </div>
         </div>
         <div class="post-content">
-            <h4>@Html.DisplayFor(model => model.Title)</h4>
-            <div class="blogBody">@Html.Raw(Model.Body)</div>
-            <div class="media-body">
-                @if (Model.MediaURL != null) {
-                    <img src="@Model.MediaURL" class="img-responsive" alt="@Model.Title" />
-                }
+            <div class="blogBody">
+                @Html.Raw(Model.Body)
             </div>
+            @if (Model.MediaURL != null) {
+                <div class="media-body">
+                    <img src="@Model.MediaURL" class="img-responsive" alt="@Model.Title" />
+                </div>
+            }
         </div>
         <div class="post-meta">
             <ul class="meta-list row">
                 <li class="col-md-8">
                     @if (User.IsInRole("Admin") || User.IsInRole("Moderator")) {
                         <span><a href="@Url.Action("Edit", "Blog", new { id =  Model.Id })" class="editDeleteLink">Edit Post</a></span>
-                        <span><a href="@Url.Action("Delete", "Blog", new { id = Model.Id })" class="editDeleteLink">Delete Post</a></span>
+                        if (User.IsInRole("Admin")) {
+                            <span><a href="@Url.Action("Delete", "Blog", new { id = Model.Id })" class="editDeleteLink">Delete Post</a></span>
+                        }
                     }
                     <span>Posted on</span>
                     <span class="black">@Html.DisplayFor(model => model.Created)</span>
@@ -55,9 +59,15 @@
 
                             <h5 class="subpage-title">Add Comment</h5>
 
-                            <input type="text" name="Body" class="form-control" rows="5" />
+                            <textarea type="text" name="Body" class="form-control" rows="5"></textarea>
                             <input type="submit" class="btn btn-flat flat-color" value="Post Comment" />
                         </form>
+                    </div>
+                </div>
+            } else {
+                <div class="post-comments">
+                    <div class="col-md-12">
+                        <h5 class="subpage-title">Login to create a comment.</h5>
                     </div>
                 </div>
             }
@@ -65,7 +75,16 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h5 class="subpage-title"><span style="font-size:.7em;">@*(Add Comment Count)*@</span> Comments</h5>
+                        <h5 class="subpage-title">
+                            @if (Model.Comments.Count == 1) {
+                                <span>(1) Comment </span>
+                            } else if (Model.Comments.Count >= 2) {
+                                <span>(</span>@Model.Comments.Count<span>) Comments </span>
+                            } else {
+                                <span>Comments </span>
+                            }
+                        </h5>
+
                         @foreach (var comment in Model.Comments) {
                             if ((User.IsInRole("Admin") || User.IsInRole("Moderator"))) {
                                 <ul class="media-list">
@@ -95,18 +114,17 @@
                                                 </span>
                                             </h5>
                                             @if (comment.IsRemoved != true) {
-                                                <div>
-                                                    @comment.Body
-                                                </div>
+                                                
+                                                <div class="formattedContent">@Html.Raw(comment.Body)</div>
+                                                
                                                 if (comment.UpdatedBy != null || comment.UpdatedDate != null) {
                                                     <h5 class="media-heading">
                                                         <span class="subText pull-right hiddenMessage">Updated By: @comment.UpdatedBy Date: @comment.UpdatedDate.Value.ToString("g") </span>
                                                     </h5>
                                                 }
                                             } else {
-                                                <div class="commentIsRemoved">
-                                                    @comment.Body
-                                                </div>
+                                                <div class="formattedContent commentIsRemoved">@Html.Raw(comment.Body)</div>
+
                                                 if (comment.RemovedBy != null || comment.RemovedDate != null) {
                                                     <h5 class="media-heading">
                                                         <span class="subText pull-right removedMessage">Removed By: @comment.RemovedBy Date: @comment.RemovedDate.Value.ToString("g") </span>
@@ -117,22 +135,21 @@
                                     </li>
                                 </ul>
                             } else {
-                                if (comment.IsRemoved != true) { 
-                                <ul class="media-list">
-                                    <li class="media">
-                                        <div class="media-body">
-                                            <h5 class="media-heading">
-                                                @Html.DisplayTextFor(model => comment.Author.DisplayName)
-                                                <span class="subText">Created: @comment.CreatedDate.ToString("g") </span>                                                
-                                            </h5>
-                                            @if (comment.IsRemoved != true) {
-                                                <div>
-                                                    @comment.Body
-                                                </div>                                                
-                                            } 
-                                        </div>
-                                    </li>
-                                </ul>
+                                if (comment.IsRemoved != true) {
+                                    <ul class="media-list">
+                                        <li class="media">
+                                            <div class="media-body">
+                                                <h5 class="media-heading">
+                                                    @Html.DisplayTextFor(model => comment.Author.DisplayName)
+                                                    <span class="subText">Created: @comment.CreatedDate.ToString("g") </span>
+                                                </h5>
+                                                @if (comment.IsRemoved != true) {
+
+                                                    <div class="formattedContent">@Html.Raw(comment.Body)</div>
+                                                }
+                                            </div>
+                                        </li>
+                                    </ul>
                                 }
                             }
                         }
@@ -162,7 +179,7 @@
 
                                     <h5 class="subpage-title">Edit Comment</h5>
                                     <label>Comment Body: </label>
-                                    <input type="text" id="commentUpdateBodyId" class="form-control" name="Body" value="" rows="5" />
+                                    <textarea type="text" id="commentUpdateBodyId" class="form-control tinyMceCommentEditor" name="Body" value="" rows="5"></textarea>
                                     <label>Reason for updating: </label>
                                     <input type="text" id="commentUpdatedReasonId" class="form-control" name="UpdateReason" value="" rows="5" />
 
@@ -194,7 +211,7 @@
 
                                     <h5 class="subpage-title">Hide Comment</h5>
                                     <label>Comment Body: </label>
-                                    <input type="text" id="commentRemoveBodyId" class="form-control" name="Body" value="" rows="5" />
+                                    <textarea type="text" id="commentRemoveBodyId" class="form-control tinyMceCommentEditor" name="Body" value="" rows="5"></textarea>
                                     <label>Reason for hiding Comment: </label>
                                     <input type="text" id="commentRemoveReasonId" class="form-control" name="RemoveReason" value="" rows="5" />
                                     <input type="submit" class="btn btn-flat flat-color" value="Hide Comment" />

@@ -2,17 +2,10 @@
     ViewBag.Title = "Contact Me";
 }
 
-<section id="google-map" class="section google-map-2 colored-wrapper">
+<section id="contact-us" class="section contact-us colored-wrapper">
     <div class="container">
         <h2>@ViewBag.Title</h2>
         <h3>@ViewBag.Message</h3>
-        <iframe width="100%" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3224.8030430251347!2d-79.9713024!3d36.07390780000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8853045bbe8c2951%3A0x5a2c7dc9f72c0bde!2s521+Pegg+Rd%2C+Greensboro%2C+NC+27409!5e0!3m2!1sen!2sus!4v1443560096677"></iframe>
-
-    </div>
-</section>
-<!-- /#google-map -->
-<section id="contact-us" class="section contact-us colored-wrapper">
-    <div class="container">
         <div class="row">
             <div class="col-md-4 wrapper-2">
                 <h5 class="subpage-title"><i class="icon-compass"></i> Visit Us</h5>
@@ -29,7 +22,7 @@
                 </address>
             </div>
             <div class="col-md-8 wrapper-1">
-                <form class="contact-form">
+                <form class="contact-form" action="@Url.Action("SendContact", "Contact")">
                     <h5 class="subpage-title">Get In Touch</h5>
                     <div class="row">
                         <div class="col-md-4">
@@ -54,3 +47,11 @@
     <!-- /.container -->
 </section>
 <!-- /#contact-us -->
+
+<section id="google-map" class="section google-map-2 colored-wrapper">
+    <div class="container">        
+        <iframe width="100%" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3224.8030430251347!2d-79.9713024!3d36.07390780000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8853045bbe8c2951%3A0x5a2c7dc9f72c0bde!2s521+Pegg+Rd%2C+Greensboro%2C+NC+27409!5e0!3m2!1sen!2sus!4v1443560096677"></iframe>
+    </div>
+</section>
+<!-- /#google-map -->
+
