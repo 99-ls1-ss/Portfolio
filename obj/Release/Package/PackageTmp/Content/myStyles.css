@@ -230,6 +230,7 @@ input.btn{
     border: 1px solid #efefef;
     background-color: #fff;
     padding: .25em;
+    background-color:#F5F5F5;
 }
 
 .blogSearchButton {
@@ -275,4 +276,5 @@ input.btn{
     padding: .45em .25em;
     border-top: 1px solid #efefef;
     border-bottom: 1px solid #efefef;
+    background-color:#fff;
 }
