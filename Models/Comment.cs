@@ -25,6 +25,7 @@ namespace Portfolio.Models {
         public string Slug { get; set; }
 
         public virtual ApplicationUser Author { get; set; }
+        //public virtual IList<ApplicationUser> UserInfo { get; set; }
         public virtual BlogPost Post { get; set; }
     }
 }

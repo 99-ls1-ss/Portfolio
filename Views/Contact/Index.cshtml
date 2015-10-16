@@ -22,21 +22,21 @@
                 </address>
             </div>
             <div class="col-md-8 wrapper-1">
-                <form class="contact-form" action="@Url.Action("SendContact", "Contact")">
+                <form class="contact-form" action="@Url.Action("Index", "Contact")" method="post">
                     <h5 class="subpage-title">Get In Touch</h5>
                     <div class="row">
                         <div class="col-md-4">
-                            <input class="form-control" placeholder="Name (required)" type="text">
+                            <input class="form-control" placeholder="Name (required)" name="contactName" type="text">
                         </div>
                         <div class="col-md-4">
-                            <input class="form-control" placeholder="Email (required)" type="text">
+                            <input class="form-control" placeholder="Email (required)" name="contactEmail" type="text">
                         </div>
                         <div class="col-md-4">
-                            <input class="form-control" placeholder="Subject (Optional)" type="text">
+                            <input class="form-control" placeholder="Subject (Optional)" name="contactSubject" type="text">
                         </div>
                     </div>
                     <!-- row-fluid -->
-                    <textarea class="form-control" placeholder="Your Message (required)" rows="3"></textarea>
+                    <textarea class="form-control" placeholder="Your Message (required)" name="contactMessage" rows="3"></textarea>
                     <button class="btn btn-flat flat-color ">Submit</button>
                 </form>
                 <!-- /.contact-form -->
