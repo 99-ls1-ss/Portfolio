@@ -203,7 +203,30 @@ namespace Portfolio.Controllers {
         // POST: Blog/Delete/
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id) {
+        public ActionResult DeleteConfirmed(int id, HttpPostedFileBase image) {
+
+            //if (image != null && (image.FileName != "blog_logo.png")) {
+            //    //relative server path
+            //    var filePath = "/Uploads/";
+
+            //    //Path on physical drive on server
+            //    var absPath = Server.MapPath("~" + filePath);
+
+            //    //Media URL for relative path
+            //    //blogPost.MediaURL = filePath + image.FileName;
+
+            //    //Save image
+            //    string fullPath = Request.MapPath(filePath + image.FileName);
+
+            //    if (System.IO.File.Exists(fullPath) && (image.FileName != "blog_logo.png")) {
+            //        System.IO.File.Delete(fullPath);
+            //    }
+            //}
+
+            //string fullPath = Request.MapPath("~/Uploads/" + image.FileName);
+            //if (System.IO.File.Exists(fullPath) && (image.FileName != "blog_logo.png")) {
+            //    System.IO.File.Delete(fullPath);
+            //}
 
             BlogPost blogPost = db.Posts.Find(id);
             db.Posts.Remove(blogPost);

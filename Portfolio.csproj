@@ -1013,7 +1013,9 @@
     <Content Include="Scripts\_references.js" />
     <Content Include="Uploads\2015-chevrolet-silverado-2500-hd-high-country-03.jpg" />
     <Content Include="Uploads\2015_gmc_sierra_sierra_2500hd_denali.png" />
+    <Content Include="Uploads\2016 gmc 2500hd.jpg" />
     <Content Include="Uploads\blog_logo.png" />
+    <Content Include="Uploads\search-icon-md.png" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
