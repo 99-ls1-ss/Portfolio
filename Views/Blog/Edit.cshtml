@@ -1,6 +1,7 @@
 ﻿@model Portfolio.Models.BlogPost
 @{
     ViewBag.Title = "Edit Post";
+    ViewBag.MenuItem = "Blog";
 }
 
 <section id="blog-posts" class="section colored-wrapper">
@@ -28,12 +29,13 @@
                 @Html.HiddenFor(model => model.Created)
 
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-xs-12">
                         <div class="form-group">
-                            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @*@Html.DisplayFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })*@
-                                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                            <div class="col-xs-12">
+                                <h4>
+                                    @Html.DisplayFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                                </h4>
+                                @*@Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })*@
                                 @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -41,10 +43,10 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-xs-12">
                         <div class="form-group">
-                            @Html.LabelFor(model => model.Body, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
+                            @*@Html.LabelFor(model => model.Body, htmlAttributes: new { @class = "control-label col-xs-2" })*@
+                            <div class="col-xs-12">
                                 @Html.EditorFor(model => model.Body, new { htmlAttributes = new { @class = "form-control", @id = "tinyMceEditor" } })
                                 @Html.ValidationMessageFor(model => model.Body, "", new { @class = "text-danger" })
                             </div>
@@ -53,29 +55,28 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-xs-12">
                         <div class="form-group">
-                            @Html.LabelFor(model => model.MediaURL, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
+                            @Html.LabelFor(model => model.MediaURL, htmlAttributes: new { @class = "control-label col-xs-3 col-sm-2 text-right" })
+                            <div class="col-xs-8 col-sm-9">
                                 @if (Model.MediaURL != null) {
                                     <label>Current Media Name: </label> @Html.DisplayFor(model => model.MediaURL)
-                                } 
-                                    @Html.HiddenFor(model => model.MediaURL, new { htmlAttributes = new { @class = "form-control", id = "fileUpload", type = "file" } })
-                                    @Html.ValidationMessageFor(model => model.MediaURL, "", new { @class = "text-danger" })
-                                
-                                @*@Html.HiddenFor(model => model.MediaURL, new { htmlAttributes = new { @class = "form-control", id = "fileUpload", type = "file" } })
-                                @Html.ValidationMessageFor(model => model.MediaURL, "", new { @class = "text-danger" })*@
-                                <input name="image" type="file" class="form-control" id="fileUpload" />
+                                }
+
+                                @Html.HiddenFor(model => model.MediaURL, new { htmlAttributes = new { @class = "form-control", id = "fileUpload", type = "file" } })
+                                @Html.ValidationMessageFor(model => model.MediaURL, "", new { @class = "text-danger" })
+
+                                <input name="image" type="file" class="form-control mediaUrl" id="fileUpload" />
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-xs-12">
                         <div class="form-group">
-                            @Html.LabelFor(model => model.IsPublished, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
+                            @Html.LabelFor(model => model.IsPublished, htmlAttributes: new { @class = "control-label col-xs-3 col-sm-2 text-right" })
+                            <div class="col-xs-8 col-sm-9">
                                 <div class="checkbox">
                                     @Html.EditorFor(model => model.IsPublished)
                                     @Html.ValidationMessageFor(model => model.IsPublished, "", new { @class = "text-danger" })
@@ -86,9 +87,9 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-xs-12">
                         <div class="form-group">
-                            <div class="col-md-offset-2 col-md-10">
+                            <div class="col-xs-offset-2 col-xs-10">
                                 <input type="submit" value="Save" class="btn btn-flat flat-color" />
                             </div>
                         </div>

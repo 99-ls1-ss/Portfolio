@@ -148,10 +148,6 @@
     left: 0;
 }
 
-#portfolio-4 h4 {
-    margin-left: 1em;
-}
-
 .portfolio-item .portfolio-content {
     padding: 10px 20px;
 }
@@ -202,6 +198,7 @@
 
 #blog-posts .media-body img {
     margin:0 auto;
+    max-height:500px;
 }
 
 .commentIsHidden {
@@ -276,4 +273,8 @@ input.btn{
     border-top: 1px solid #efefef;
     border-bottom: 1px solid #efefef;
     background-color:#fff;
+}
+
+.mediaUrl {
+    padding:4px 12px 4px 4px;
 }
