@@ -200,9 +200,8 @@
     margin-bottom: .5em;
 }
 
-.commentIsRemoved {
-    /*border: 1px solid #FDDADA;*/
-    /*background-color: #FFFAFA;*/
+#blog-posts .media-body img {
+    margin:0 auto;
 }
 
 .commentIsHidden {
@@ -226,9 +225,9 @@ input.btn{
     margin:1%;
 }
 
-.media-body {
+.post-comments .media-body {
     border: 1px solid #efefef;
-    background-color: #fff;
+    /*background-color: #fff;*/
     padding: .25em;
     background-color:#F5F5F5;
 }
