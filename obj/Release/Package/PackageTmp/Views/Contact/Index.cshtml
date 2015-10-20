@@ -1,13 +1,12 @@
 ﻿@{
-    ViewBag.Title = "Contact Me";
+    ViewBag.Title = "Contact";
 }
 
 <section id="contact-us" class="section contact-us colored-wrapper">
     <div class="container">
         <h2>@ViewBag.Title</h2>
-        <h3>@ViewBag.Message</h3>
         <div class="row">
-            <div class="col-md-4 wrapper-2">
+            <div class="col-sm-3 col-xs-5 wrapper-2">
                 <h5 class="subpage-title"><i class="icon-compass"></i> Visit Us</h5>
                 <address>
                     <strong>Payne Solutions</strong><br>
@@ -21,7 +20,7 @@
                     <a href="mailto:brandon@navicamls.net">brandon@navicamls.net</a>
                 </address>
             </div>
-            <div class="col-md-8 wrapper-1">
+            <div class="col-sm-9 col-xs-7 wrapper-1">
                 <form class="contact-form" action="@Url.Action("Index", "Contact")" method="post">
                     <h5 class="subpage-title">Get In Touch</h5>
                     <div class="row">

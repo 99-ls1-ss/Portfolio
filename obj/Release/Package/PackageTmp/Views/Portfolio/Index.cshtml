@@ -1,21 +1,21 @@
 ﻿@{
     ViewBag.Title = "Portfolio";
-    ViewBag.Message = "Below are some examples of my work.";
+    ViewBag.Message = "Javascript Examples";
+    ViewBag.Message2 = "Photoshop Examples";
 }
 
 <section id="portfolio-4" class="section colored-wrapper">
     <div class="container">
-        <h2>@ViewBag.Title</h2>
-        @*<h3>@ViewBag.Message</h3>*@
-        <!-- /.portfolio-filter -->
-        <div class="row javascriptExamples">
-            <div class="row">
-                <div class="col-xs-12 col-sm-6 col-md-12">
-                    <h4>Javascript Examples</h4>
-                </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h2>@ViewBag.Title</h2>    
             </div>
+        </div>            
+        <div class="row javascriptExamples">
             <div id="isotope-portfolio-container">
-                
+                <div class="col-xs-12">
+                    <h4>@ViewBag.Message</h4>
+                </div>
                 <div class="col-xs-12 col-sm-6 col-md-3 portfolio-item-wrapper">
                     <div class="portfolio-item">
                         <div class="portfolio-thumb">
@@ -23,9 +23,6 @@
                             <div class="image-overlay"></div>
                             <a href="#" class="portfolio-link" data-toggle="modal" data-target="#numbersGame"><i class="icon-link"></i></a>
                         </div>
-                        @*<div class="portfolio-content">
-                            <h5>Numbers Game</h5>
-                        </div>*@
                     </div>
                 </div>
                 <!-- /.portfolio-item-wrapper -->
@@ -35,10 +32,7 @@
                             <img src="~/Content/Images/portfolio/JavaScript2Text.png" class="img-responsive" alt="Number Changer">
                             <div class="image-overlay"></div>
                             <a href="#" class="portfolio-link" data-toggle="modal" data-target="#numberChanger"><i class="icon-link"></i></a>
-                        </div>                        
-                        @*<div class="portfolio-content">
-                            <h5>Number Changer</h5>
-                        </div>*@
+                        </div>
                     </div>
                 </div>
                 <!-- /.portfolio-item-wrapper -->
@@ -49,9 +43,7 @@
                             <div class="image-overlay"></div>
                             <a href="#" class="portfolio-link" data-toggle="modal" data-target="#factorialFinder"><i class="icon-link"></i></a>
                         </div>
-                        @*<div class="portfolio-content">
-                            <h5>Factorial Finder</h5>
-                        </div>*@
+
                     </div>
                 </div>
                 <!-- /.portfolio-item-wrapper -->
@@ -62,9 +54,6 @@
                             <div class="image-overlay"></div>
                             <a href="#" class="portfolio-link" data-toggle="modal" data-target="#palindromeChecker"><i class="icon-link"></i></a>
                         </div>
-                        @*<div class="portfolio-content">
-                            <h5>Palindrome Test</h5>
-                        </div>*@
                     </div>
                 </div>
 
@@ -73,14 +62,12 @@
         </div>
         <!-- /.row -->
         <div class="row photoshopExamples">
-            <div class="row">
-                <div class="col-xs-12 col-sm-6 col-md-12">
-                    <h4>Photoshop Examples</h4>
-                </div>
-            </div>
             <div id="isotope-portfolio-container">
+                <div class="col-xs-12">
+                    <h4>@ViewBag.Message2</h4>
+                </div>
 
-                <div class="col-md-7 col-sm-8 col-xs-8 wrapper-1">
+                <div class="col-md-7 col-xs-7 wrapper-1">
                     <div id="carousel-example-generic" class="carousel slide">
                         <!-- Indicators -->
                         <ol class="carousel-indicators">
@@ -128,7 +115,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-5 col-md-4 col-xs-4 wrapper-1"> 
+                <div class="col-md-5 col-xs-5 wrapper-1">
                     <h5 class="subpage-title">PhotoChopping</h5>
                     <p>While building custom websites for various customers, I have learned how to manipulate images for business and fun.</p>
                 </div>

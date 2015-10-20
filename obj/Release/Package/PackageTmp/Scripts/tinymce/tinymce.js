@@ -31055,7 +31055,7 @@ define("tinymce/Editor", [
 				if (typeof settings.theme != "function") {
 					w = settings.width || elm.style.width || elm.offsetWidth;
 					h = settings.height || elm.style.height || elm.offsetHeight;
-					minHeight = settings.min_height || 100;
+					minHeight = settings.min_height || 180;
 					re = /^[0-9\.]+(|px)$/i;
 
 					if (re.test('' + w)) {
