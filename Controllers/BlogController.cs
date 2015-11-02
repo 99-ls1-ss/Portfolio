@@ -31,10 +31,11 @@ namespace Portfolio.Controllers {
 
                 string[] searchArray = searchString.Split(' ');
 
-                queryPost= searchArray.SelectMany(r => db.Posts.Where(q => (q.Body.Contains(r)) ||
-                            (q.Title.Contains(r)) ||
-                            (q.Slug.Contains(r)) ||
-                            (q.Comments).Any(c => (c.Body).Contains(r)))).AsQueryable();
+                queryPost= searchArray.SelectMany(r => db.Posts.Where(q => 
+                    (q.Body.Contains(r)) ||
+                    (q.Title.Contains(r)) ||
+                    (q.Slug.Contains(r)) ||
+                    (q.Comments).Any(c => (c.Body).Contains(r)))).AsQueryable();
 
                 ViewBag.Query = searchString;            
             }
@@ -93,16 +94,9 @@ namespace Portfolio.Controllers {
                 }
 
                 if (image != null) {
-                    //relative server path
                     var filePath = "/Uploads/";
-
-                    //Path on physical drive on server
                     var absPath = Server.MapPath("~" + filePath);
-
-                    //Media URL for relative path
                     blogPost.MediaURL = filePath + image.FileName;
-
-                    //Save image
                     image.SaveAs(Path.Combine(absPath, image.FileName));
                 }
                 blogPost.Created = DateTimeOffset.Now;
@@ -140,7 +134,6 @@ namespace Portfolio.Controllers {
 
                 if (ext != ".png" && ext != ".jpg" && ext != ".jpeg" && ext != ".gif" && ext != ".bmp")
                     ModelState.AddModelError("image", "Invalid Image Type.");
-
             }
 
             if (ModelState.IsValid) {
@@ -189,7 +182,7 @@ namespace Portfolio.Controllers {
         }
 
         // GET: Blog/Delete/
-        //[Authorize(Roles = "Admin", "Moderator")]
+        [Authorize(Roles = "Admin, Moderator")]
         public ActionResult Delete(int? id) {
             if (id == null) {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

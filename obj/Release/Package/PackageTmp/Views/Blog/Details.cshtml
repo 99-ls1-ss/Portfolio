@@ -228,7 +228,6 @@
 
 @section scripts{
     <script>
-        //$(document).ready(function () {
         $('.jsCommentClass').click(function () {
             //Global comment variables
             $('#commentUpdateId').val($(this).attr('data-id'));
@@ -240,11 +239,9 @@
 
             //Updated variables
             $('#commentUpdatedById').val($(this).attr('data-updatedby'));
-            //$('#commentUpdatedById').val($(this).attr('data-test'));
             $('#commentUpdatedDateId').val($(this).attr('data-updateddate'));
             $('#commentUpdatedReasonId').val($(this).attr('data-updatedreason'));
 
         });
-        //});
     </script>
 }
