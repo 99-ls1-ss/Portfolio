@@ -573,6 +573,11 @@
     <Content Include="Content\Images\boxed_bgtile.png" />
     <Content Include="Content\Images\buffaloOwl.jpg" />
     <Content Include="Content\Images\buffaloTiger.jpg" />
+    <Content Include="Content\Images\carousel\bt-db.png" />
+    <Content Include="Content\Images\carousel\bt-db2.png" />
+    <Content Include="Content\Images\carousel\bt-db3.png" />
+    <Content Include="Content\Images\carousel\bt-db4.png" />
+    <Content Include="Content\Images\carousel\bt-db5.png" />
     <Content Include="Content\Images\search-icon-md.png" />
     <Content Include="Content\Images\search-icon-white.png" />
     <Content Include="Content\Images\slides\brick-background.png" />
