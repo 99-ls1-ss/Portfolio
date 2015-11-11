@@ -1,7 +1,8 @@
 ﻿@{
     ViewBag.Title = "Portfolio";
-    ViewBag.Message = "Javascript Examples";
-    ViewBag.Message2 = "Photoshop Examples";
+    ViewBag.MessageBt = "Bug Tracker Website";
+    ViewBag.MessageJs = "Javascript Examples";
+    ViewBag.MessagePs = "Photoshop Examples";
 }
 
 <section id="portfolio-4" class="section colored-wrapper">
@@ -11,10 +12,59 @@
                 <h2>@ViewBag.Title</h2>    
             </div>
         </div>            
-        <div class="row javascriptExamples">
-            <div id="isotope-portfolio-container">
+        <div class="row bugtrackerExamples">
+            <div id="isotope-portfolio-container-bt">
                 <div class="col-xs-12">
-                    <h4>@ViewBag.Message</h4>
+                    <h4>@ViewBag.MessageBt</h4>
+                </div>
+
+                <div class="col-md-7 col-xs-7 wrapper-1">
+                    <div id="carousel-example-generic" class="carousel slide">
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators">
+                            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="2" class=""></li>
+                        </ol>
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <img src="~/Content/images/carousel/bt-db.png" class="img-responsive" alt="Carousel Image">
+                            </div>
+                            <div class="item">
+                                <img src="~/Content/images/carousel/bt-db2.png" class="img-responsive" alt="Carousel Image">
+                            </div>
+                            <div class="item">
+                                <img src="~/Content/images/carousel/bt-db3.png" class="img-responsive" alt="Carousel Image">
+                            </div>
+                            <div class="item">
+                                <img src="~/Content/images/carousel/bt-db4.png" class="img-responsive" alt="Carousel Image">
+                            </div>
+                            <div class="item">
+                                <img src="~/Content/images/carousel/bt-db5.png" class="img-responsive" alt="Carousel Image">
+                            </div>
+                        </div>
+                        <!-- Controls -->
+                        <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left"></span>
+                        </a>
+                        <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-md-5 col-xs-5 wrapper-1">
+                    <h5 class="subpage-title">Bug Tracker Website</h5>
+                    <p>The Bug Tracker website allows to keep track of issues and enhancements with any of your solutions.  You can follow the life cycle of a project with the Bug Tracker.</p>
+                </div>
+            </div>
+            <!-- /.isotope-portfolio-container -->
+        </div>
+        <div class="row javascriptExamples">
+            <div id="isotope-portfolio-container-js">
+                <div class="col-xs-12">
+                    <h4>@ViewBag.MessageJs</h4>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-3 portfolio-item-wrapper">
                     <div class="portfolio-item">
@@ -62,9 +112,9 @@
         </div>
         <!-- /.row -->
         <div class="row photoshopExamples">
-            <div id="isotope-portfolio-container">
+            <div id="isotope-portfolio-container-ps">
                 <div class="col-xs-12">
-                    <h4>@ViewBag.Message2</h4>
+                    <h4>@ViewBag.MessagePs</h4>
                 </div>
 
                 <div class="col-md-7 col-xs-7 wrapper-1">

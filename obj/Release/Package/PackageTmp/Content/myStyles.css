@@ -129,15 +129,22 @@
     color:#fff;
 }
 
+
+
+.bugtrackerExamples {
+    background-color: #2ECC71;
+}
+
 .photoshopExamples {
     background-color: #5F9EA0;
 }
 
+.bugtrackerExamples h4, .bugtrackerExamples h5,.bugtrackerExamples p , 
 .photoshopExamples h4, .photoshopExamples h5,.photoshopExamples p {
     color: #fff;
 }
 
-.photoshopExamples .subpage-title:before {
+.bugtrackerExamples .subpage-title:before, .photoshopExamples .subpage-title:before {
     content: "";
     width: 35px;
     height: 3px;
