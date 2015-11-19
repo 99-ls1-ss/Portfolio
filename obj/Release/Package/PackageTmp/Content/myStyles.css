@@ -129,7 +129,9 @@
     color:#fff;
 }
 
-
+.carFinderExamples {
+    background-color:#D61414;
+}
 
 .bugtrackerExamples {
     background-color: #2ECC71;
@@ -139,12 +141,13 @@
     background-color: #5F9EA0;
 }
 
-.bugtrackerExamples h4, .bugtrackerExamples h5,.bugtrackerExamples p , 
+.carFinderExamples h4, .carFinderExamples h5,.carFinderExamples p, 
+.bugtrackerExamples h4, .bugtrackerExamples h5,.bugtrackerExamples p, 
 .photoshopExamples h4, .photoshopExamples h5,.photoshopExamples p {
     color: #fff;
 }
 
-.bugtrackerExamples .subpage-title:before, .photoshopExamples .subpage-title:before {
+.carFinderExamples .subpage-title:before,.bugtrackerExamples .subpage-title:before, .photoshopExamples .subpage-title:before {
     content: "";
     width: 35px;
     height: 3px;
