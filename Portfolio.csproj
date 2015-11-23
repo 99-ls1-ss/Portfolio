@@ -578,6 +578,9 @@
     <Content Include="Content\Images\carousel\bt-db3.png" />
     <Content Include="Content\Images\carousel\bt-db4.png" />
     <Content Include="Content\Images\carousel\bt-db5.png" />
+    <Content Include="Content\Images\carousel\cf-db1.png" />
+    <Content Include="Content\Images\carousel\cf-db2.png" />
+    <Content Include="Content\Images\carousel\cf-db3.png" />
     <Content Include="Content\Images\search-icon-md.png" />
     <Content Include="Content\Images\search-icon-white.png" />
     <Content Include="Content\Images\slides\brick-background.png" />
@@ -661,6 +664,8 @@
     <Content Include="Content\Images\shop\product %284%29.png" />
     <Content Include="Content\Images\shop\product %285%29.png" />
     <Content Include="Content\Images\shop\product %286%29.png" />
+    <Content Include="Content\Images\slides\ferrari-458-2.png" />
+    <Content Include="Content\Images\slides\ferrari-458.png" />
     <Content Include="Content\Images\slides\imac.png" />
     <Content Include="Content\Images\slides\IMG_0796.JPG" />
     <Content Include="Content\Images\slides\IMG_2936.JPG" />
