@@ -133,6 +133,10 @@
     background-color:#D61414;
 }
 
+.houseHoldBudget {
+    background-color:#9E0AF8;
+}
+
 .bugtrackerExamples {
     background-color: #2ECC71;
 }
@@ -143,7 +147,8 @@
 
 .carFinderExamples h4, .carFinderExamples h5,.carFinderExamples p, 
 .bugtrackerExamples h4, .bugtrackerExamples h5,.bugtrackerExamples p, 
-.photoshopExamples h4, .photoshopExamples h5,.photoshopExamples p {
+.photoshopExamples h4, .photoshopExamples h5,.photoshopExamples p,
+.houseHoldBudget h4, .houseHoldBudget h5,.houseHoldBudget p  {
     color: #fff;
 }
 
